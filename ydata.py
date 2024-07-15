@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 
 #load data
-data = pd.read_csv('Student/student-por.csv')
+data = pd.read_csv('Data/Student/student-por.csv')
 
 # Extract numerical columns
 num_cols = data.select_dtypes(include=[np.number]).columns.tolist()
