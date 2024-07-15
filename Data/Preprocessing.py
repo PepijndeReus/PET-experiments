@@ -117,3 +117,9 @@ def prepros_student(input_file, method):
 
     # tracker.stop_task()
     return 
+
+# only use this file to import the functions
+if __name__ == "__main__":
+    # prepros_adult('Adult/adult_train.csv', 'Adult/adult_val.csv', 'original')
+    # prepros_student('Student/student.csv', 'original')
+    pass
