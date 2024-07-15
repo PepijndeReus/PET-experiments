@@ -49,12 +49,12 @@ def prepros_adult(train_file, val_file, method):
     set(adult_train.columns).difference(adult_val.columns)
 
     # now save the .csv files
-    adult_train.to_csv(f'synthetic_data/Adult_train_{method}_data.csv', index=False)
-    labels_train.to_csv(f'synthetic_data/Adult_train_{method}_labels.csv', index=False)
+    adult_train.to_csv(f'Adult/synthetic_data/Adult_train_{method}_data.csv', index=False)
+    labels_train.to_csv(f'Adult/synthetic_data/Adult_train_{method}_labels.csv', index=False)
     # print("Adult training set saved to csv!\n")
 
-    adult_val.to_csv(f'synthetic_data/Adult_val_{method}_data.csv', index=False)
-    labels_val.to_csv(f'synthetic_data/Adult_val_{method}_labels.csv', index=False)
+    adult_val.to_csv(f'Adult/synthetic_data/Adult_val_{method}_data.csv', index=False)
+    labels_val.to_csv(f'Adult/synthetic_data/Adult_val_{method}_labels.csv', index=False)
     # print("Adult validation set saved to csv!")
 
     # tracker.stop_task()
@@ -106,13 +106,13 @@ def prepros_student(input_file, method):
     # print(f"Validation set and labels have same length: {len(student_val) == len(grade_val)}")
 
     # now save the .csv files
-    student_train.to_csv(f'student_train_{method}_data.csv', index=False)
-    grade_train.to_csv(f'student_train_{method}_grade.csv', index=False)
+    student_train.to_csv(f'Student/synthetic_data/student_train_{method}_data.csv', index=False)
+    grade_train.to_csv(f'Student/synthetic_data/student_train_{method}_grade.csv', index=False)
     # print("Student performance training set saved to csv!\n")
 
     # and for the validation set
-    student_val.to_csv(f'student_val_{method}_data.csv', index=False)
-    grade_val.to_csv(f'student_val_{method}_grade.csv', index=False)
+    student_val.to_csv(f'Student/synthetic_data/student_val_{method}_data.csv', index=False)
+    grade_val.to_csv(f'Student/synthetic_data/student_val_{method}_grade.csv', index=False)
     # print("Student performance validation set saved to csv!")
 
     # tracker.stop_task()
