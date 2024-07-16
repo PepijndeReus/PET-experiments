@@ -5,7 +5,7 @@ import os
 import pandas as pd
 from dp_ctgan.dpctgan import DPCTGAN
 
-def create_synthetic(label, discr_cols, batch_size=10):
+def syn_dpctgan(label, discr_cols, batch_size=10):
 	'''Create synthetic data and save in 'data/syn/' '''
 	data = pd.read_csv(f'data/{label}_train.csv')
 
@@ -28,14 +28,17 @@ def create_synthetic(label, discr_cols, batch_size=10):
 	new = dpctgan.sample(len(data))
 	new.to_csv(f'data/syn/{label}_train.csv', index=False)
 
+def syn_other(label):
+	pass
+
 
 if __name__ == "__main__":
-	create_synthetic(
+	syn_dpctgan(
 		'breast',
-		['class', 'menopause', 'tumor-size',
+		['age', 'class', 'menopause', 'tumor-size',
 		 'inv-nodes', 'node-caps', 'deg-malig',
 		 'breast', 'breast-quad', 'irradiat'])
-	create_synthetic(
+	syn_dpctgan(
 		'student',
 		['school', 'sex', 'address', 'famsize',
 		 'Pstatus', 'Medu', 'Fedu', 'Mjob', 'Fjob', 'reason',
