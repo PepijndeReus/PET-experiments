@@ -36,4 +36,4 @@ synth.fit(data=data, train_arguments=train_args, num_cols=num_cols, cat_cols=cat
 synth_data = synth.sample(649)
 print(synth_data)
 
-synth_data.to_csv("Student_synthetic_ydata_ctgan.csv")
+synth_data.to_csv("Data/Student/synthetic_data/Student_synthetic_ydata_ctgan.csv")
