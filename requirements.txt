@@ -17,6 +17,10 @@ onnx>=1.7.0
 pymongo>=3.9.0
 
 pandas==1.5.3
+numpy==
+
+ydata-synthetic==1.4.0
+synthcity==0.2.10
 
 ctgan
 
