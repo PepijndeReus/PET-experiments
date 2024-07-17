@@ -51,7 +51,7 @@ def syn_ydata(label, batch_size=500, epochs=50, learning_rate=2e-4, beta_1=0.5, 
 	new = synth.sample(len(data))
 	new.to_csv(f'data/syn/{label}_train.csv', index=False)
 
-def syn_synthcity(data_path, target_column):
+def syn_synthcity(label, target_column):
     """
     Generate synthetic data using Synthcity.
     """
@@ -72,9 +72,51 @@ def syn_synthcity(data_path, target_column):
     syn_model = Plugins().get("adsgan")
     syn_model.fit(loader)
     
-    # Generate synthetic data
+    # Save data
     synthetic_data = syn_model.generate(len(data)).dataframe()
 	synthetic_data.to_csv(f'data/syn/{label}_train.csv', index=False)
+
+def syn_sdv_ctgan(label, target_column, epochs=50):
+	"""Generate synthetic data with SDV CTGAN"""
+	# Load the data
+    data = pd.read_csv(f'data/{label}_train.csv')
+
+	# Identify discrete columns (assuming all non-numeric columns are discrete)
+    discrete_columns = data.select_dtypes(include=['object', 'category']).columns.tolist()
+    
+    
+    # Initialize and train the CTGAN model
+    ctgan = CTGAN(epochs=epochs)
+    ctgan.fit(preprocessed_data, discrete_columns)
+
+	# Save data
+	os.makedirs('data/syn', exist_ok=True)
+	synthetic_data = ctgan.sample(len(data))
+	synthetic_data.to_csv(f'data/syn/{label}_train.csv', index=False)
+
+def syn_nbsynthetic(label, decimal=','):
+    """
+	Generate synthetic data using nbsynthetic 
+    """
+	# Load the data
+    data = pd.read_csv(f'data/{label}_train.csv')
+    
+	# Load the data
+    #df = input_data(file_name, decimal=decimal)
+    
+    # Initialize and use SmartBrain for encoding
+    SB = SmartBrain()
+    df_encoded = SB.nbEncode(data)
+    
+    # Generate synthetic data
+	os.makedirs('data/syn', exist_ok=True)
+    newdf = synthetic_data(
+        GAN, 
+        df_encoded, 
+        samples=len(data)
+    )
+    newdf.to_csv(f'data/syn/{label}_train.csv', index=False)
+
 
 pass
 
