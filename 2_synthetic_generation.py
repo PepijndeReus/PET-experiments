@@ -5,7 +5,7 @@ import os
 import pandas as pd
 from dp_ctgan.dpctgan import DPCTGAN
 
-def syn_dpctgan(label, discr_cols, batch_size=10):
+def dpctgan(label, discr_cols, batch_size=10):
 	'''Create synthetic data and save in 'data/syn/' '''
 	data = pd.read_csv(f'data/{label}_train.csv')
 
@@ -28,7 +28,7 @@ def syn_dpctgan(label, discr_cols, batch_size=10):
 	new = dpctgan.sample(len(data))
 	new.to_csv(f'data/syn/{label}_train.csv', index=False)
 
-def syn_ydata(label, batch_size=500, epochs=50, learning_rate=2e-4, beta_1=0.5, beta_2=0.9, sample_size=649):
+def ydata(label, batch_size=10, epochs=50, learning_rate=2e-4, beta_1=0.5, beta_2=0.9):
     # Load the data
     data = pd.read_csv(f'data/{label}_train.csv')
     
@@ -51,7 +51,7 @@ def syn_ydata(label, batch_size=500, epochs=50, learning_rate=2e-4, beta_1=0.5, 
 	new = synth.sample(len(data))
 	new.to_csv(f'data/syn/{label}_train.csv', index=False)
 
-def syn_synthcity(label, target_column):
+def synthcity(label, target_column):
     """
     Generate synthetic data using Synthcity.
     """
@@ -76,7 +76,7 @@ def syn_synthcity(label, target_column):
     synthetic_data = syn_model.generate(len(data)).dataframe()
 	synthetic_data.to_csv(f'data/syn/{label}_train.csv', index=False)
 
-def syn_sdv_ctgan(label, target_column, epochs=50):
+def sdv_ctgan(label, target_column, epochs=50):
 	"""Generate synthetic data with SDV CTGAN"""
 	# Load the data
     data = pd.read_csv(f'data/{label}_train.csv')
@@ -94,7 +94,7 @@ def syn_sdv_ctgan(label, target_column, epochs=50):
 	synthetic_data = ctgan.sample(len(data))
 	synthetic_data.to_csv(f'data/syn/{label}_train.csv', index=False)
 
-def syn_nbsynthetic(label, decimal=','):
+def nbsynthetic(label, decimal=','):
     """
 	Generate synthetic data using nbsynthetic 
     """
