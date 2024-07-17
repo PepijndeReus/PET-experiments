@@ -22,6 +22,8 @@ numpy==
 ydata-synthetic==1.4.0
 synthcity==0.2.10
 
+nbsynthetic
+
 ctgan
 
 pyrapl
