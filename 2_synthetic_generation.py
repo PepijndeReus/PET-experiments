@@ -239,7 +239,7 @@ if __name__ == "__main__":
 	#synthcity('breast', brcanc) # problemen met goggle
 	#dpctgan('census', census)
 	ydata('heart', heart)
-	sdv_ctgan_ctgan('heart', heart)
+	sdv_ctgan('heart', heart)
 	synthcity('heart', heart)
 	exit()
 
