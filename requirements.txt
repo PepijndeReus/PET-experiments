@@ -1,28 +1,13 @@
-tensorboard==2.9.0
-tensorboard-data-server==0.6.1
-tensorboard-plugin-wit==1.8.1
+requests<3.31
+keras>=3.0.0
+tensorboard>=2.16
 
-tensorflow==2.9.0
-tensorflow-datasets==4.9.3
-tensorflow-estimator==2.9.0
-tensorflow-io-gcs-filesystem==0.34.0
-tensorflow-metadata==1.14.0 
-
-torch==2.1.2
-torchsummary==1.5.1
-torchvision==0.16.2
-
-omegaconf==2.3.0
-onnx>=1.7.0
-pymongo>=3.9.0
-
-pandas==1.5.3
-numpy==
-
-ydata-synthetic==1.4.0
-synthcity==0.2.10
-
+ydata-synthetic
+synthcity[goggle]
+nbsynthetic @ git+https://github.com/NextBrain-ai/nbsynthetic.git
 ctgan
 
 pyrapl
+numpy
+pandas
 scikit-learn
