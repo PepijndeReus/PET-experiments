@@ -77,9 +77,12 @@ def clean_student():
 	# change separator for Student data set
 	student = pd.read_csv('raw/student-por.csv', sep=';')
 
+	# data is ordered, shuffle data
+	student_shuffled = student.sample(frac=1, random_state=1, axis=0)
+
 	# split into training and validation set, same ratio as Adult set
-	student_train = student[:int(len(student) * (2/3))]
-	student_val = student[int(len(student) * (2/3)):]
+	student_train = student_shuffled[:int(len(student_shuffled) * (2/3))]
+	student_val = student_shuffled[int(len(student_shuffled) * (2/3)):]
 
 	# save training and validation set
 	os.makedirs('data', exist_ok=True)

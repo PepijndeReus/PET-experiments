@@ -113,21 +113,17 @@ def synthcity(label, dict):
 	# Load the data
 	data = pd.read_csv(f'data/{label}_train.csv')
 
-	# Define X and y
-	#X = data.drop(columns=[target_column])
-	#y = data[target_column]
-
 	# Prepare data loader
 	loader = GenericDataLoader(
-		data)
-	#	target_column=target_column,
-	#)
+		data,
+		target_column=dict['target_column'])
 
 	# Initialize and train the synthetic model
 	syn_model = Plugins().get("adsgan")
 	syn_model.fit(loader)
 
 	# Save data
+	os.makedirs('data/syn', exist_ok=True)
 	synthetic_data = syn_model.generate(len(data)).dataframe()
 	synthetic_data.to_csv(f'data/syn/{label}_train_synthcity.csv', index=False)
 
@@ -140,7 +136,7 @@ def synthcity(label, dict):
 			print(f"Real: {real_unique}")
 			print(f"Synthetic: {synthetic_unique}")
 
-def sdv_ctgan(label, dict):
+def ctgan(label, dict):
 	"""Generate synthetic data with SDV CTGAN"""
 	# Load the data
 	data = pd.read_csv(f'data/{label}_train.csv')
@@ -178,15 +174,20 @@ def nbsynthetic(label, dict):
 
 	# Initialize and use SmartBrain for encoding
 	SB = SmartBrain()
-	df_encoded = SB.nbEncode(data)
+	#df_encoded = SB.nbEncode(data)
 
 	# Generate synthetic data
-	os.makedirs('data/syn', exist_ok=True)
 	newdf = synthetic_data(
 		GAN,
-		df_encoded,
+		#df_encoded,
+		data,
 		samples=len(data)
 	)
+	#synt_data = SB.nbDecode(newdf)
+	print(newdf)
+
+	# Save data
+	os.makedirs('data/syn', exist_ok=True)
 	newdf.to_csv(f'data/syn/{label}_train_nbsynthetic.csv', index=False)
 
 
