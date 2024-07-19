@@ -1,5 +1,6 @@
 raw/
 data/
 measurements/
-.*
-__*
+**/.*
+**/__*
+workspace/
