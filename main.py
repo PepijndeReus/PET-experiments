@@ -50,6 +50,7 @@ if __name__ == "__main__":
 	pyRAPL.setup()
 	os.makedirs('measurements', exist_ok=True)
 
+	# TODO yaml configuratie inladen
 	#config = yaml.save_load(open('config/main.yml'))
 	#print(config)
 	dict = {
@@ -96,8 +97,9 @@ if __name__ == "__main__":
 
 
 	#exit()
-	print(args)
+	print(args) # <- TODO remove
 	for x in range(args.amount):
+		# TODO time total run
 		vprint(f"\n========= RUN {x+1} =========\n")
 		for synthesizer in args.generators:
 			vprint(f"\n=== Measurement for synthetic data generator '{synthesizer}' ===\n")
