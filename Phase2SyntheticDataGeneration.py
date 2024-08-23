@@ -46,6 +46,7 @@ def datasynthesizer(label, dict):
 
 	# load data, set mode
 	data = pd.read_csv(f'data/{label}_train.csv')
+	data_loc = f'data/{label}_train.csv'
 
 	# settings for DataSynthesizer
 	mode = 'correlated_attribute_mode'
@@ -63,7 +64,7 @@ def datasynthesizer(label, dict):
 
 	# describe data set
 	describer = DataDescriber(category_threshold=threshold)
-	describer.describe_dataset_in_correlated_attribute_mode(dataset_file=data, 
+	describer.describe_dataset_in_correlated_attribute_mode(dataset_file=data_loc, 
 															epsilon=epsilon, 
 															k=degree_of_bayesian_network)
 	describer.save_dataset_description_to_file(description_file)
