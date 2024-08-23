@@ -49,17 +49,16 @@ def datasynthesizer(label, dict):
 	data_loc = f'data/{label}_train.csv'
 
 	# settings for DataSynthesizer
-	mode = 'correlated_attribute_mode'
 	threshold = 42 # Threshold for categorical
 	epsilon = 0 # Differential privacy
 	degree_of_bayesian_network = 2 # amount of parent nodes for Bayesian network
-	num_tuples_to_generate = len(data)
+	num_tuples_to_generate = int(len(data))
 
 	# Specify categorical attributes
     # categorical_attributes = {'type_employer': True, 'education': True}
 
 	# location for output files
-	description_file = f'./output/description_{label}.json'
+	description_file = f'./description_{label}.json'
 	synthetic_data_loc = f'data/syn/{label}_train_datasynthesizer.csv'
 
 	# describe data set
@@ -67,6 +66,7 @@ def datasynthesizer(label, dict):
 	describer.describe_dataset_in_correlated_attribute_mode(dataset_file=data_loc, 
 															epsilon=epsilon, 
 															k=degree_of_bayesian_network)
+	
 	describer.save_dataset_description_to_file(description_file)
 
 	# Generate data set
@@ -77,14 +77,14 @@ def datasynthesizer(label, dict):
 	generator.save_synthetic_data(synthetic_data_loc)
 
 	# Compare unique values
-	synthetic_data = pd.read_csv(synthetic_data_loc)
-	for col in data.columns:
-		real_unique = set(data[col].unique())
-		synthetic_unique = set(synthetic_data[col].unique())
-		if real_unique != synthetic_unique:
-			print(f"{col} differs")
-			print(f"Real: {real_unique}")
-			print(f"Synthetic: {synthetic_unique}")
+	# synthetic_data = pd.read_csv(synthetic_data_loc)
+	# for col in data.columns:
+	# 	real_unique = set(data[col].unique())
+	# 	synthetic_unique = set(synthetic_data[col].unique())
+	# 	if real_unique != synthetic_unique:
+	# 		print(f"{col} differs")
+	# 		print(f"Real: {real_unique}")
+	# 		print(f"Synthetic: {synthetic_unique}")
 
 
 def dpctgan(label, dict):
