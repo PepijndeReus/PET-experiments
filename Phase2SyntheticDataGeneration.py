@@ -37,7 +37,6 @@ from nbsynthetic.synthetic import synthetic_data
 from DataSynthesizer.DataDescriber import DataDescriber
 from DataSynthesizer.DataGenerator import DataGenerator
 # unused: from DataSynthesizer.ModelInspector import ModelInspector
-from DataSynthesizer.lib.utils import read_json_file, display_bayesian_network
 
 def datasynthesizer(label, dict):
 	"""
@@ -59,12 +58,12 @@ def datasynthesizer(label, dict):
     # categorical_attributes = {'type_employer': True, 'education': True}
 
 	# location for output files
-    description_file = f'./output/description_{label}.json'
+	description_file = f'./output/description_{label}.json'
 	synthetic_data_loc = f'data/syn/{label}_train_datasynthesizer.csv'
 
 	# describe data set
 	describer = DataDescriber(category_threshold=threshold)
-	describer.describe_dataset_in_correlated_attribute_mode(dataset_file=input_data, 
+	describer.describe_dataset_in_correlated_attribute_mode(dataset_file=data, 
 															epsilon=epsilon, 
 															k=degree_of_bayesian_network)
 	describer.save_dataset_description_to_file(description_file)
