@@ -19,7 +19,7 @@ if __name__ == "__main__":
 		choices=['student', 'breast', 'heart', 'census'],
 		default=['student', 'breast', 'heart', 'census'])
 	parser.add_argument('-s', '--generator', nargs="+", dest='generators',
-		choices=['benchmark', 'dpctgan', 'ydata', 'ctgan', 'synthcity', 'nbsynthetic'],
+		choices=['benchmark', 'dpctgan', 'ydata', 'ctgan', 'synthcity', 'nbsynthetic', 'datasynthesizer'],
 		default=['benchmark'])
 	parser.add_argument('-p', '--phases', nargs="+", dest='phases', type=int,
 		choices=[1,2,3,4],

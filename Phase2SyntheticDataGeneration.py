@@ -33,6 +33,62 @@ from nbsynthetic.vgan import GAN
 #generate synthetic dataset
 from nbsynthetic.synthetic import synthetic_data
 
+# DataSynthesizer
+from DataSynthesizer.DataDescriber import DataDescriber
+from DataSynthesizer.DataGenerator import DataGenerator
+# unused: from DataSynthesizer.ModelInspector import ModelInspector
+from DataSynthesizer.lib.utils import read_json_file, display_bayesian_network
+
+def datasynthesizer(label, dict):
+	"""
+	Create synthetic data with DataSynthesizer.
+	Save data in 'data/syn/'
+	"""
+
+	# load data, set mode
+	data = pd.read_csv(f'data/{label}_train.csv')
+
+	# settings for DataSynthesizer
+	mode = 'correlated_attribute_mode'
+	threshold = 42 # Threshold for categorical
+	epsilon = 0 # Differential privacy
+	degree_of_bayesian_network = 2 # amount of parent nodes for Bayesian network
+	num_tuples_to_generate = len(data)
+
+	# Specify categorical attributes
+    # categorical_attributes = {'type_employer': True, 'education': True}
+
+	# location for output files
+    description_file = f'./output/description_{label}.json'
+    synthetic_data_loc = f'data/syn/{label}_train_datasynthesizer.csv'
+
+	# describe data set
+	describer = DataDescriber(category_threshold=threshold)
+	describer.describe_dataset_in_correlated_attribute_mode(dataset_file=input_data, 
+															epsilon=epsilon, 
+															k=degree_of_bayesian_network)
+	describer.save_dataset_description_to_file(description_file)
+
+	# Generate data set
+	generator = DataGenerator()
+	generator.generate_dataset_in_correlated_attribute_mode(num_tuples_to_generate, description_file)
+	generator.save_synthetic_data(synthetic_data_loc)
+
+	# Save data
+	os.makedirs('data/syn', exist_ok=True)
+	synthetic_data = syn_model.generate(len(data)).dataframe()
+	synthetic_data.to_csv(f'data/syn/{label}_train_datasynthesizer.csv', index=False)
+
+	# Compare unique values
+	for col in data.columns:
+		real_unique = set(data[col].unique())
+		synthetic_unique = set(synthetic_data[col].unique())
+		if real_unique != synthetic_unique:
+			print(f"{col} differs")
+			print(f"Real: {real_unique}")
+			print(f"Synthetic: {synthetic_unique}")
+
+
 def dpctgan(label, dict):
 	'''Create synthetic data and save in 'data/syn/' '''
 	data = pd.read_csv(f'data/{label}_train.csv')
