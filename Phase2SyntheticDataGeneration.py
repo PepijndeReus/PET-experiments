@@ -60,7 +60,7 @@ def datasynthesizer(label, dict):
 
 	# location for output files
     description_file = f'./output/description_{label}.json'
-    synthetic_data_loc = f'data/syn/{label}_train_datasynthesizer.csv'
+	synthetic_data_loc = f'data/syn/{label}_train_datasynthesizer.csv'
 
 	# describe data set
 	describer = DataDescriber(category_threshold=threshold)
@@ -72,14 +72,12 @@ def datasynthesizer(label, dict):
 	# Generate data set
 	generator = DataGenerator()
 	generator.generate_dataset_in_correlated_attribute_mode(num_tuples_to_generate, description_file)
+
+	# Save data set
 	generator.save_synthetic_data(synthetic_data_loc)
 
-	# Save data
-	os.makedirs('data/syn', exist_ok=True)
-	synthetic_data = syn_model.generate(len(data)).dataframe()
-	synthetic_data.to_csv(f'data/syn/{label}_train_datasynthesizer.csv', index=False)
-
 	# Compare unique values
+	synthetic_data = pd.read_csv(synthetic_data_loc)
 	for col in data.columns:
 		real_unique = set(data[col].unique())
 		synthetic_unique = set(synthetic_data[col].unique())
