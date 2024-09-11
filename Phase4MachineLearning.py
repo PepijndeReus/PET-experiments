@@ -19,6 +19,9 @@ def knn(label, synthesizer=""):
 	val_data = pd.read_csv(f'data/{label}_val_data.csv')
 	val_labels = pd.read_csv(f'data/{label}_val_labels.csv')
 
+	# make sure columns are in same order
+	val_data = val_data[train_data.columns]
+
 	# make and fit kNN model
 	NeighbourModel = KNeighborsClassifier(n_neighbors=5) # Todo, is dit niet twee?
 	NeighbourModel.fit(train_data, train_labels.values.ravel())
@@ -45,6 +48,9 @@ def lr(label, synthesizer=""):
 	val_data = pd.read_csv(f'data/{label}_val_data.csv')
 	val_labels = pd.read_csv(f'data/{label}_val_labels.csv')
 
+	# make sure columns are in same order
+	val_data = val_data[train_data.columns]
+
 	# make and fit logistic regression model
 	LogReg = LogisticRegression(max_iter=1000)
 	LogReg.fit(train_data, train_labels.values.ravel())
@@ -69,6 +75,10 @@ def nn(label, synthesizer=""):
 	val_data = pd.read_csv(f'data/{label}_val_data.csv')
 	val_labels = pd.read_csv(f'data/{label}_val_labels.csv')
 
+	# make sure columns are in same order
+	val_data = val_data[train_data.columns]
+
+
 	NeuralNet = Sequential()
 	NeuralNet.add(Dense(8, activation = 'relu'))
 	NeuralNet.add(Dense(16, activation = 'relu'))
@@ -90,7 +100,8 @@ def nn(label, synthesizer=""):
 	#df.to_csv(f'measurements/accuracy_{label.replace("/","_")}{synthesizer}_nn.csv', index=False)
 
 if __name__ == "__main__":
-	knn('breast')
+	knn('syn/breast', '_synthcity')
+	exit()
 	lr('breast')
 	exit()
 	knn('student')

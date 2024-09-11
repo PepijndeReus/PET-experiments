@@ -67,7 +67,12 @@ if __name__ == "__main__":
 			'beta_2': 0.9
 		},
 		'student': {
-			'discr_cols': ['school', 'sex', 'age', 'address', 'famsize', 'Pstatus', 'Medu','Fedu', 'Mjob','Fjob','reason','guardian','traveltime', 'studytime', 'failures','schoolsup','famsup','paid','activities','nursery','higher','internet','romantic','famrel','freetime','goout','Dalc','Walc','health','absences','G1','G2','G3'],
+			'discr_cols': ['school', 'sex', 'age', 'address', 'famsize', 'Pstatus', 'Medu','Fedu',
+						   'Mjob','Fjob','reason','guardian','traveltime', 'studytime',
+						   'failures','schoolsup','famsup','paid','activities','nursery','higher',
+                           'internet','romantic','famrel','freetime','goout','Dalc','Walc',
+                           'health','absences','G1','G2','G3'],
+			'target_column': 'G3',
 			'other_var': 23,
 			'batch_size': 10,
 			'epochs': 1,
@@ -76,16 +81,21 @@ if __name__ == "__main__":
 			'beta_2': 0.9
 		},
 		'census': {
-			'discr_cols': ['age','type_employer','education','marital','occupation','relationship','race','sex','capital_gain','capital_loss','hr_per_week','country','income'],
+			'discr_cols': ['age','type_employer','education','marital','occupation','relationship',
+						   'race','sex','capital_gain','capital_loss','hr_per_week','country',
+						   'income'],
+			'target_column': 'income',
 			'other_var': 23,
 			'batch_size': 10,
-			'epochs': 1,
+			'epochs': 4,
 			'learning_rate': 2e-4,
 			'beta_1': 0.5,
 			'beta_2': 0.9
 		},
 		'heart': {
-			'discr_cols': ['age','sex','cp','trestbps','chol','fbs','restecg','thalach','exang','oldpeak','slope','ca','thal','num'],
+			'discr_cols': ['age','sex','cp','trestbps','chol','fbs','restecg','thalach','exang',
+						   'oldpeak','slope','ca','thal','num'],
+			'target_column': 'num',
 			'other_var': 23,
 			'batch_size': 10,
 			'epochs': 1,
@@ -100,9 +110,11 @@ if __name__ == "__main__":
 	print(args) # <- TODO remove
 	for x in range(args.amount):
 		# TODO time total run
-		vprint(f"\n========= RUN {x+1} =========\n")
+		vprint("\n\n=============================\n",
+			   f"========= RUN {x+1} =========\n",
+			   "=============================\n\n")
 		for synthesizer in args.generators:
-			vprint(f"\n=== Measurement for synthetic data generator '{synthesizer}' ===\n")
+			vprint(f"\n\n=== Measurement for synthetic data generator '{synthesizer}' ===\n\n")
 			for label in args.label:
 				vprint(f"Starting data set: {label}")
 				csv_output = pyRAPL.outputs.CSVOutput(f'measurements/energy_{label}.csv')

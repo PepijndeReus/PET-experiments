@@ -115,13 +115,13 @@ def dpctgan(label, dict):
 	synthetic_data.to_csv(f'data/syn/{label}_train_dpctgan.csv', index=False)
 
 	# Compare unique values
-	for col in data.columns:
-		real_unique = set(data[col].unique())
-		synthetic_unique = set(synthetic_data[col].unique())
-		if real_unique != synthetic_unique:
-			print(f"{col} differs")
-			print(f"Real: {real_unique}")
-			print(f"Synthetic: {synthetic_unique}")
+	#for col in data.columns:
+	#	real_unique = set(data[col].unique())
+	#	synthetic_unique = set(synthetic_data[col].unique())
+	#	if real_unique != synthetic_unique:
+	#		print(f"{col} differs")
+	#		print(f"Real: {real_unique}")
+	#		print(f"Synthetic: {synthetic_unique}")
 
 def ydata(label, dict):
 	# Load the data
@@ -152,13 +152,13 @@ def ydata(label, dict):
 	synthetic_data.to_csv(f'data/syn/{label}_train_ydata.csv', index=False)
 
 	# Compare unique values
-	for col in data.columns:
-		real_unique = set(data[col].unique())
-		synthetic_unique = set(synthetic_data[col].unique())
-		if real_unique != synthetic_unique:
-			print(f"{col} differs")
-			print(f"Real: {real_unique}")
-			print(f"Synthetic: {synthetic_unique}")
+	#for col in data.columns:
+	#	real_unique = set(data[col].unique())
+	#	synthetic_unique = set(synthetic_data[col].unique())
+	#	if real_unique != synthetic_unique:
+	#		print(f"{col} differs")
+	#		print(f"Real: {real_unique}")
+	#		print(f"Synthetic: {synthetic_unique}")
 
 def synthcity(label, dict):
 	"""
@@ -182,13 +182,13 @@ def synthcity(label, dict):
 	synthetic_data.to_csv(f'data/syn/{label}_train_synthcity.csv', index=False)
 
 	# Compare unique values
-	for col in data.columns:
-		real_unique = set(data[col].unique())
-		synthetic_unique = set(synthetic_data[col].unique())
-		if real_unique != synthetic_unique:
-			print(f"{col} differs")
-			print(f"Real: {real_unique}")
-			print(f"Synthetic: {synthetic_unique}")
+	#for col in data.columns:
+	#	real_unique = set(data[col].unique())
+	#	synthetic_unique = set(synthetic_data[col].unique())
+	#	if real_unique != synthetic_unique:
+	#		print(f"{col} differs")
+	#		print(f"Real: {real_unique}")
+	#		print(f"Synthetic: {synthetic_unique}")
 
 def ctgan(label, dict):
 	"""Generate synthetic data with SDV CTGAN"""
@@ -208,13 +208,13 @@ def ctgan(label, dict):
 	synthetic_data.to_csv(f'data/syn/{label}_train_ctgan.csv', index=False)
 
 	# Compare unique values
-	for col in data.columns:
-		real_unique = set(data[col].unique())
-		synthetic_unique = set(synthetic_data[col].unique())
-		if real_unique != synthetic_unique:
-			print(f"{col} differs")
-			print(f"Real: {real_unique}")
-			print(f"Synthetic: {synthetic_unique}")
+	#for col in data.columns:
+	#	real_unique = set(data[col].unique())
+	#	synthetic_unique = set(synthetic_data[col].unique())
+	#	if real_unique != synthetic_unique:
+	#		print(f"{col} differs")
+	#		print(f"Real: {real_unique}")
+	#		print(f"Synthetic: {synthetic_unique}")
 
 def nbsynthetic(label, dict):
 	"""
