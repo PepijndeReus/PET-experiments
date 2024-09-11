@@ -54,19 +54,16 @@ def datasynthesizer(label, dict):
 	degree_of_bayesian_network = 2 # amount of parent nodes for Bayesian network
 	num_tuples_to_generate = int(len(data))
 
-	# Specify categorical attributes
-    # categorical_attributes = {'type_employer': True, 'education': True}
-
 	# location for output files
 	description_file = f'./description_{label}.json'
 	synthetic_data_loc = f'data/syn/{label}_train_datasynthesizer.csv'
 
 	# describe data set
 	describer = DataDescriber(category_threshold=threshold)
-	describer.describe_dataset_in_correlated_attribute_mode(dataset_file=data_loc, 
-															epsilon=epsilon, 
+	describer.describe_dataset_in_correlated_attribute_mode(dataset_file=data_loc,
+															epsilon=epsilon,
 															k=degree_of_bayesian_network)
-	
+
 	describer.save_dataset_description_to_file(description_file)
 
 	# Generate data set
