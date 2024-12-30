@@ -1,5 +1,5 @@
 """
-This file creates the synthetic data using DP-CTGAN
+This file contains the code that is used in main.py to generate synthetic data.
 """
 import os
 import pandas as pd

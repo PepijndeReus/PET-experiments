@@ -1,5 +1,5 @@
 """
-Text
+This file contains the code that is used in main.py to perform machine learning tasks.
 """
 
 import pandas as pd
