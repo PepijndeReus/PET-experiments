@@ -20,7 +20,7 @@ if __name__ == "__main__":
 		default=['student', 'breast', 'heart', 'census'])
 	parser.add_argument('-s', '--generator', nargs="+", dest='generators',
 		choices=['benchmark', 'dpctgan', 'ydata', 'ctgan', 'synthcity', 'nbsynthetic', 'datasynthesizer'],
-		default=['benchmark'])
+		default=['dpctgan', 'ydata', 'ctgan', 'synthcity', 'nbsynthetic', 'datasynthesizer'])
 	parser.add_argument('-p', '--phases', nargs="+", dest='phases', type=int,
 		choices=[1,2,3,4],
 		default=[1,2,3,4])
@@ -29,7 +29,7 @@ if __name__ == "__main__":
 		default=['knn', 'lr', 'nn'])
 	parser.add_argument('-n', '--amount', type=int, dest='amount', default=1)
 	parser.add_argument('--version', action='version', version='%(prog)s 0.1')
-	parser.add_argument('-v', '--verbose', action='store_true')
+	parser.add_argument('-v', '--verbose', action='store_true', default=True)
 	# TODO add custom yaml files
 
 	args = parser.parse_args()
@@ -87,7 +87,7 @@ if __name__ == "__main__":
 			'target_column': 'income',
 			'other_var': 23,
 			'batch_size': 10,
-			'epochs': 4,
+			'epochs': 1,
 			'learning_rate': 2e-4,
 			'beta_1': 0.5,
 			'beta_2': 0.9
@@ -107,6 +107,7 @@ if __name__ == "__main__":
 
 
 	#exit()
+	print("Given arguments:")
 	print(args) # <- TODO remove
 	for x in range(args.amount):
 		# TODO time total run
@@ -116,7 +117,7 @@ if __name__ == "__main__":
 		for synthesizer in args.generators:
 			vprint(f"\n\n=== Measurement for synthetic data generator '{synthesizer}' ===\n\n")
 			for label in args.label:
-				vprint(f"Starting data set: {label}")
+				vprint(f"\nStarting data set: {label}")
 				csv_output = pyRAPL.outputs.CSVOutput(f'measurements/energy_{label}.csv')
 
 				#### Cleaning ####
@@ -133,7 +134,11 @@ if __name__ == "__main__":
 						vprint("- Measuring synthetic data generation")
 						generator_function = getattr(Phase2SyntheticDataGeneration, synthesizer)
 						with pyRAPL.Measurement(f'syn_{synthesizer}', output=csv_output):
-							generator_function(label, dict[label])
+							try:
+								generator_function(label, dict[label])
+							except Exception as e:
+								print(e)
+
 
 				#### Preprocessing ####
 				if 3 in args.phases:
@@ -141,7 +146,11 @@ if __name__ == "__main__":
 					if synthesizer == 'benchmark':
 						vprint("- Measuring preprocessing")
 						with pyRAPL.Measurement('preprocessing', output=csv_output):
-							preprocessing_function()
+							try:
+								preprocessing_function()
+							except Exception as e:
+								print(e)
+
 						# Check sizes of dataframes
 						data = pd.read_csv(f'data/{label}_val_data.csv', nrows=0)
 						synt = pd.read_csv(f'data/{label}_train_data.csv')
@@ -152,7 +161,10 @@ if __name__ == "__main__":
 					else:
 						vprint(f"- Measuring preprocessing ({synthesizer})")
 						with pyRAPL.Measurement(f'preprocessing_{synthesizer}', output=csv_output):
-							preprocessing_function(path="syn/", synthesizer=f"_{synthesizer}")
+							try:
+								preprocessing_function(path="syn/", synthesizer=f"_{synthesizer}")
+							except Exception as e:
+								print(e)
 
 						# Check sizes of dataframes
 						data = pd.read_csv(f'data/{label}_val_data.csv', nrows=0)
@@ -168,17 +180,20 @@ if __name__ == "__main__":
 					results = pd.DataFrame({'name': [synthesizer]})
 
 					for task in args.tasks:
-						task_function = getattr(Phase4MachineLearning, task)
+						try:
+							task_function = getattr(Phase4MachineLearning, task)
 
-						if synthesizer == 'benchmark':
-							vprint(f"  * {task}")
-							with pyRAPL.Measurement(f'{task}', output=csv_output):
-								acc = task_function(label)
-						else:
-							vprint(f"  * {task} ({synthesizer})")
-							with pyRAPL.Measurement(f'{task}_{synthesizer}', output=csv_output):
-								acc = task_function(f"syn/{label}", synthesizer=f"_{synthesizer}")
-						results[task] = acc
+							if synthesizer == 'benchmark':
+								vprint(f"  * {task}")
+								with pyRAPL.Measurement(f'{task}', output=csv_output):
+									acc = task_function(label)
+							else:
+								vprint(f"  * {task} ({synthesizer})")
+								with pyRAPL.Measurement(f'{task}_{synthesizer}', output=csv_output):
+									acc = task_function(f"syn/{label}", synthesizer=f"_{synthesizer}")
+							results[task] = acc
+						except Exception as e:
+							print(e)
 
 					# Save accuracies
 					results.to_csv(f'measurements/accuracy_{label}.csv', mode='a', index=False,
