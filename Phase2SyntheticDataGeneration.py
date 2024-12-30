@@ -49,7 +49,7 @@ def datasynthesizer(label, dict):
 	data_loc = f'data/{label}_train.csv'
 
 	# settings for DataSynthesizer
-	threshold = 42 # Threshold for categorical
+	threshold = 20 # Threshold for categorical
 	epsilon = 0 # Differential privacy
 	degree_of_bayesian_network = 2 # amount of parent nodes for Bayesian network
 	num_tuples_to_generate = int(len(data))
@@ -72,6 +72,7 @@ def datasynthesizer(label, dict):
 
 	# Save data set
 	generator.save_synthetic_data(synthetic_data_loc)
+	print("Location of synthetic data:", synthetic_data_loc)
 
 	# Compare unique values
 	# synthetic_data = pd.read_csv(synthetic_data_loc)
@@ -218,19 +219,20 @@ def nbsynthetic(label, dict):
 	Generate synthetic data using nbsynthetic
 	"""
 	# Load the data
-	data = pd.read_csv(f'data/{label}_train.csv')
+	data_without_strings = pd.read_csv(f'data/{label}_train.csv')
+
+	# change strings
+	data = data_without_strings
 
 	# Load the data
 	#df = input_data(file_name, decimal=decimal)
 
 	# Initialize and use SmartBrain for encoding
 	SB = SmartBrain()
-	#df_encoded = SB.nbEncode(data)
 
 	# Generate synthetic data
 	newdf = synthetic_data(
 		GAN,
-		#df_encoded,
 		data,
 		samples=len(data)
 	)
