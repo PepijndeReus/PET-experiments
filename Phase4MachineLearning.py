@@ -23,7 +23,7 @@ def knn(label, synthesizer=""):
 	val_data = val_data[train_data.columns]
 
 	# make and fit kNN model
-	NeighbourModel = KNeighborsClassifier(n_neighbors=5) # Todo, is dit niet twee?
+	NeighbourModel = KNeighborsClassifier(n_neighbors=2)
 	NeighbourModel.fit(train_data, train_labels.values.ravel())
 
 	# make report and add to dataframe
