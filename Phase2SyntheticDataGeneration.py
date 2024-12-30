@@ -99,9 +99,10 @@ def dpctgan(label, dict):
 			print(data[col].dtype, col)
 
 	# Fit model
+	print("epochs: ", dict['epochs'])
 	dpctgan = DPCTGAN(verbose=True, batch_size=dict['batch_size'], 
 					  epochs=dict['epochs'], generator_lr=dict['learning_rate'],
-					  discriminator_lr=dict['learning_rate'], cuda=False) #steps, target_epsilon/delta
+					  discriminator_lr=dict['learning_rate'], cuda=False, target_epsilon=0) #steps, target_epsilon/delta
 	dpctgan.fit(data, discr_cols)
 
 	for col in changed_cols:
