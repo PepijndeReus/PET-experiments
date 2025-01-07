@@ -11,3 +11,4 @@ pyrapl
 numpy
 pandas
 scikit-learn
+anonymeter
