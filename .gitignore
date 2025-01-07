@@ -1,6 +1,8 @@
 raw/
 data/
 measurements/
+first_run_measurements/
+__pycache__/
 **/.*
 dp_ctgan/__*
 workspace/
