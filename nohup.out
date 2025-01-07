@@ -1,1022 +1,0 @@
-2024-08-26 13:38:27.895316: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2024-08-26 13:38:27.917855: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2024-08-26 13:38:27.917880: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2024-08-26 13:38:27.918450: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2024-08-26 13:38:27.921874: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2024-08-26 13:38:28.365232: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
-[KeOps] Warning : Cuda libraries were not detected on the system or could not be loaded ; using cpu only mode
-Namespace(label=['student', 'breast', 'heart', 'census'], generators=['dpctgan', 'ydata', 'ctgan', 'synthcity', 'nbsynthetic'], phases=[1, 2, 3, 4], tasks=['knn', 'lr', 'nn'], amount=1, verbose=True)
-
-
-=============================
- ========= RUN {x+1} =========
- ===============================
-
-
-
-
-=== Measurement for synthetic data generator 'dpctgan' ===
-
-
-Starting data set: student
-- Measuring cleaning
-- Measuring synthetic data generation
-object age
-object Medu
-object Fedu
-object traveltime
-object studytime
-object failures
-object famrel
-object freetime
-object goout
-object Dalc
-object Walc
-object health
-object absences
-object G1
-object G2
-object G3
-Init CTGAN with differential privacy.  Target epsilon: 3
-Epoch 1, Loss G:  0.9877, Loss D: -0.8026, 
-Epoch 2, Loss G: -0.5263, Loss D:  0.3979, 
-Epoch 3, Loss G:  0.2354, Loss D: -0.2548, 
-Epoch 4, Loss G:  0.3608, Loss D:  0.0362, 
-Epoch 5, Loss G:  0.7271, Loss D:  0.6260, 
-- Measuring preprocessing (dpctgan)
-- Measuring machine learning task
-  * knn (dpctgan)
-  * lr (dpctgan)
-  * nn (dpctgan)
-Starting data set: breast
-- Measuring cleaning
-- Measuring synthetic data generation
-object deg-malig
-Init CTGAN with differential privacy.  Target epsilon: 3
-Epoch 1, Loss G:  1.2692, Loss D: -0.0072, 
-- Measuring preprocessing (dpctgan)
-- Measuring machine learning task
-  * knn (dpctgan)
-  * lr (dpctgan)
-  * nn (dpctgan)
-Starting data set: heart
-- Measuring cleaning
-- Measuring synthetic data generation
-object num
-Init CTGAN with differential privacy.  Target epsilon: 3
-Epoch 1, Loss G:  1.9451, Loss D: -0.0491, 
-- Measuring preprocessing (dpctgan)
-- Measuring machine learning task
-  * knn (dpctgan)
-  * lr (dpctgan)
-  * nn (dpctgan)
-Starting data set: census
-- Measuring cleaning
-- Measuring synthetic data generation
-object age
-object capital_gain
-object capital_loss
-object hr_per_week
-Init CTGAN with differential privacy.  Target epsilon: 3
-Epoch 1, Loss G: -3.5198, Loss D:  2.1569, 
-Epoch 2, Loss G:  0.7378, Loss D:  1.7831, 
-Epoch 3, Loss G: -2.6853, Loss D:  1.0871, 
-Epoch 4, Loss G: -0.1448, Loss D:  1.3611, 
-Epoch 5, Loss G:  1.1691, Loss D: -2.4775, 
-Epoch 6, Loss G: -1.4577, Loss D: -0.0140, 
-Epoch 7, Loss G: -1.3172, Loss D: -0.6710, 
-Epoch 8, Loss G: -2.5734, Loss D: -0.5550, 
-Epoch 9, Loss G: -0.1860, Loss D: -1.3351, 
-Epoch 10, Loss G:  0.2479, Loss D:  0.5773, 
-Epoch 11, Loss G:  0.5980, Loss D: -3.6934, 
-Epoch 12, Loss G: -1.6532, Loss D: -3.0444, 
-Epoch 13, Loss G: -3.1682, Loss D: -0.6479, 
-Epoch 14, Loss G:  1.0679, Loss D: -0.7549, 
-Epoch 15, Loss G: -1.1173, Loss D:  0.3611, 
-Epoch 16, Loss G: -0.9024, Loss D: -4.9115, 
-Epoch 17, Loss G: -2.4792, Loss D:  2.3534, 
-Epoch 18, Loss G: -0.1235, Loss D:  0.3096, 
-Epoch 19, Loss G: -0.9005, Loss D: -0.2638, 
-Epoch 20, Loss G: -1.3860, Loss D:  2.5012, 
-Epoch 21, Loss G: -1.9307, Loss D: -1.3854, 
-Epoch 22, Loss G:  3.2450, Loss D: -0.7332, 
-Epoch 23, Loss G: -0.4045, Loss D:  0.9979, 
-Epoch 24, Loss G:  0.1967, Loss D: -0.4143, 
-Epoch 25, Loss G:  2.1765, Loss D: -1.5418, 
-Epoch 26, Loss G:  1.5803, Loss D:  1.6772, 
-Epoch 27, Loss G: -2.3998, Loss D:  0.5008, 
-Epoch 28, Loss G: -2.2584, Loss D:  0.1025, 
-Epoch 29, Loss G:  0.7018, Loss D:  3.6214, 
-Epoch 30, Loss G:  1.9615, Loss D: -0.0578, 
-Epoch 31, Loss G:  0.0332, Loss D:  2.3925, 
-Epoch 32, Loss G: -1.0598, Loss D:  0.4394, 
-Epoch 33, Loss G:  0.7707, Loss D:  0.2321, 
-Epoch 34, Loss G: -0.2929, Loss D: -0.0612, 
-Epoch 35, Loss G: -1.9690, Loss D:  0.3794, 
-Epoch 36, Loss G:  2.2361, Loss D:  0.8128, 
-Epoch 37, Loss G:  0.5405, Loss D:  3.4598, 
-Epoch 38, Loss G:  1.2018, Loss D:  0.3583, 
-Epoch 39, Loss G:  1.3721, Loss D: -0.8145, 
-Epoch 40, Loss G:  0.5424, Loss D: -0.8322, 
-Epoch 41, Loss G: -1.3712, Loss D: -2.3454, 
-Epoch 42, Loss G:  1.9788, Loss D: -0.4303, 
-Epoch 43, Loss G: -1.2807, Loss D: -1.5956, 
-Epoch 44, Loss G: -0.2302, Loss D: -0.2334, 
-Epoch 45, Loss G: -0.0459, Loss D:  0.9682, 
-Epoch 46, Loss G: -1.6141, Loss D: -2.5074, 
-Epoch 47, Loss G:  1.1988, Loss D:  0.2040, 
-Epoch 48, Loss G:  2.3636, Loss D:  0.0041, 
-Epoch 49, Loss G: -0.0080, Loss D: -3.3745, 
-Epoch 50, Loss G:  1.0321, Loss D:  2.6844, 
-Epoch 51, Loss G:  0.0899, Loss D:  0.0157, 
-Epoch 52, Loss G: -1.0984, Loss D:  1.1247, 
-Epoch 53, Loss G: -1.1691, Loss D:  2.8422, 
-Epoch 54, Loss G:  3.1073, Loss D: -1.7172, 
-Epoch 55, Loss G: -0.8108, Loss D:  0.5712, 
-Epoch 56, Loss G:  0.2566, Loss D:  0.5631, 
-Epoch 57, Loss G:  0.1582, Loss D:  0.2340, 
-Epoch 58, Loss G: -0.9483, Loss D: -1.1819, 
-Epoch 59, Loss G:  0.9934, Loss D: -4.4183, 
-Epoch 60, Loss G: -0.1857, Loss D: -2.4452, 
-Epoch 61, Loss G: -1.4168, Loss D:  4.1534, 
-Epoch 62, Loss G:  0.4030, Loss D: -0.5953, 
-Epoch 63, Loss G: -0.0237, Loss D:  2.1662, 
-Epoch 64, Loss G:  0.7395, Loss D: -0.7806, 
-Epoch 65, Loss G:  1.0285, Loss D: -1.1952, 
-Epoch 66, Loss G:  0.2641, Loss D:  0.9720, 
-Epoch 67, Loss G: -1.5984, Loss D: -1.9102, 
-Epoch 68, Loss G: -1.1591, Loss D:  0.1244, 
-Epoch 69, Loss G:  0.0284, Loss D: -2.5347, 
-Epoch 70, Loss G: -1.6133, Loss D: -0.2936, 
-Epoch 71, Loss G:  0.0008, Loss D: -1.8090, 
-Epoch 72, Loss G:  0.3054, Loss D:  3.2195, 
-Epoch 73, Loss G: -2.6976, Loss D: -2.7060, 
-Epoch 74, Loss G: -2.6749, Loss D: -2.7927, 
-Epoch 75, Loss G: -2.3506, Loss D:  0.3557, 
-Epoch 76, Loss G:  3.7493, Loss D: -2.4329, 
-Epoch 77, Loss G: -1.1021, Loss D: -2.1881, 
-Epoch 78, Loss G: -0.2569, Loss D: -0.9299, 
-Epoch 79, Loss G:  0.0505, Loss D: -1.8987, 
-Epoch 80, Loss G: -3.1281, Loss D:  4.3210, 
-Epoch 81, Loss G: -1.1706, Loss D:  0.8992, 
-Epoch 82, Loss G:  0.4997, Loss D:  0.1025, 
-Epoch 83, Loss G:  1.0502, Loss D: -0.4817, 
-Epoch 84, Loss G: -0.5164, Loss D:  1.0590, 
-Epoch 85, Loss G: -1.3467, Loss D: -2.7951, 
-Epoch 86, Loss G:  0.8328, Loss D: -1.4135, 
-Epoch 87, Loss G: -1.8951, Loss D: -0.6139, 
-Epoch 88, Loss G: -2.0083, Loss D: -0.6372, 
-Epoch 89, Loss G: -1.4209, Loss D: -0.4439, 
-Epoch 90, Loss G: -2.1995, Loss D:  1.0761, 
-Epoch 91, Loss G: -1.1700, Loss D:  1.0117, 
-Epoch 92, Loss G:  0.8227, Loss D:  3.1359, 
-Epoch 93, Loss G:  0.5287, Loss D: -0.5210, 
-Epoch 94, Loss G:  0.5521, Loss D: -0.6661, 
-Epoch 95, Loss G:  0.2304, Loss D: -0.9161, 
-Epoch 96, Loss G:  0.6046, Loss D: -0.9841, 
-Epoch 97, Loss G: -3.9415, Loss D:  2.3019, 
-Epoch 98, Loss G:  1.1500, Loss D: -4.3055, 
-Epoch 99, Loss G:  1.0328, Loss D: -1.8062, 
-Epoch 100, Loss G:  1.2529, Loss D: -2.4039, 
-Epoch 101, Loss G: -1.0847, Loss D: -0.8938, 
-Epoch 102, Loss G: -2.6245, Loss D:  0.2232, 
-Epoch 103, Loss G: -0.0245, Loss D: -0.2158, 
-Epoch 104, Loss G:  0.1043, Loss D:  0.5010, 
-Epoch 105, Loss G:  0.6612, Loss D: -0.0713, 
-Epoch 106, Loss G: -1.4066, Loss D:  2.8358, 
-Epoch 107, Loss G: -0.0686, Loss D:  1.0630, 
-Epoch 108, Loss G:  0.4750, Loss D: -0.1323, 
-Epoch 109, Loss G: -0.8642, Loss D: -1.4028, 
-Epoch 110, Loss G: -1.7864, Loss D:  2.4084, 
-Epoch 111, Loss G: -1.1415, Loss D:  0.8124, 
-Epoch 112, Loss G: -0.0538, Loss D: -1.7942, 
-Epoch 113, Loss G:  2.5038, Loss D: -2.1051, 
-Epoch 114, Loss G:  1.4488, Loss D: -0.3070, 
-Epoch 115, Loss G: -3.5474, Loss D:  0.4222, 
-Epoch 116, Loss G:  2.3626, Loss D: -0.1424, 
-Epoch 117, Loss G:  2.2851, Loss D:  1.6683, 
-Epoch 118, Loss G: -5.2854, Loss D: -4.6778, 
-Epoch 119, Loss G:  2.1564, Loss D: -0.2434, 
-Epoch 120, Loss G:  0.6666, Loss D: -0.5876, 
-Epoch 121, Loss G: -1.6715, Loss D: -1.2602, 
-Epoch 122, Loss G: -1.1761, Loss D: -0.9603, 
-Epoch 123, Loss G:  1.5506, Loss D: -0.6499, 
-Epoch 124, Loss G:  0.7478, Loss D: -0.3397, 
-Epoch 125, Loss G: -0.1543, Loss D: -4.5954, 
-Epoch 126, Loss G: -2.4619, Loss D: -1.4655, 
-Epoch 127, Loss G:  0.7455, Loss D: -2.3853, 
-Epoch 128, Loss G:  2.0692, Loss D:  0.0063, 
-Epoch 129, Loss G: -1.2274, Loss D: -3.3927, 
-Epoch 130, Loss G:  0.6567, Loss D:  4.7338, 
-Epoch 131, Loss G: -0.8697, Loss D: -0.5115, 
-Epoch 132, Loss G: -2.2059, Loss D: -0.7884, 
-Epoch 133, Loss G:  0.0909, Loss D:  2.2082, 
-Epoch 134, Loss G: -1.4690, Loss D:  0.6951, 
-Epoch 135, Loss G: -0.4506, Loss D: -2.0642, 
-Epoch 136, Loss G: -1.6700, Loss D: -3.4980, 
-Epoch 137, Loss G: -0.9794, Loss D:  1.4928, 
-Epoch 138, Loss G:  0.0241, Loss D: -2.3886, 
-Epoch 139, Loss G: -0.5025, Loss D: -0.3016, 
-Epoch 140, Loss G: -2.1812, Loss D:  1.2279, 
-Epoch 141, Loss G: -3.0469, Loss D:  2.4362, 
-Epoch 142, Loss G:  1.8713, Loss D: -1.6887, 
-Epoch 143, Loss G: -0.4508, Loss D:  1.0034, 
-Epoch 144, Loss G:  1.3355, Loss D:  1.8079, 
-Epoch 145, Loss G:  2.6773, Loss D:  2.0534, 
-Epoch 146, Loss G: -0.5980, Loss D: -0.8888, 
-Epoch 147, Loss G: -1.8783, Loss D: -5.0979, 
-Epoch 148, Loss G:  3.2294, Loss D: -2.0485, 
-Epoch 149, Loss G:  0.3399, Loss D:  4.0565, 
-Epoch 150, Loss G:  0.8711, Loss D:  0.8914, 
-Epoch 151, Loss G:  2.3916, Loss D: -2.1815, 
-Epoch 152, Loss G:  2.7922, Loss D:  1.8097, 
-Epoch 153, Loss G: -1.2227, Loss D:  0.6520, 
-Epoch 154, Loss G: -3.7874, Loss D: -3.8395, 
-Epoch 155, Loss G: -0.0616, Loss D: -0.8814, 
-Epoch 156, Loss G:  1.3283, Loss D: -3.2959, 
-Epoch 157, Loss G: -2.5612, Loss D: -1.8351, 
-Epoch 158, Loss G:  2.2580, Loss D:  1.2854, 
-Epoch 159, Loss G:  0.8048, Loss D:  0.5385, 
-Epoch 160, Loss G: -0.2269, Loss D:  2.1692, 
-Epoch 161, Loss G:  3.9112, Loss D:  0.7409, 
-Epoch 162, Loss G: -1.7247, Loss D: -0.5913, 
-Epoch 163, Loss G:  1.3577, Loss D:  0.6273, 
-Epoch 164, Loss G: -1.8951, Loss D:  0.3200, 
-Epoch 165, Loss G:  0.2731, Loss D: -0.3991, 
-Epoch 166, Loss G: -1.0477, Loss D:  1.4467, 
-Epoch 167, Loss G:  1.4484, Loss D: -1.4388, 
-Epoch 168, Loss G:  0.6096, Loss D:  0.0612, 
-Epoch 169, Loss G: -0.0901, Loss D:  0.1186, 
-Epoch 170, Loss G:  0.0128, Loss D: -0.0059, 
-Epoch 171, Loss G: -2.5370, Loss D:  0.1957, 
-Epoch 172, Loss G:  0.6322, Loss D: -3.7219, 
-Epoch 173, Loss G:  2.1533, Loss D:  0.3549, 
-Epoch 174, Loss G: -2.7957, Loss D: -0.7867, 
-Epoch 175, Loss G: -3.2131, Loss D: -1.6563, 
-Epoch 176, Loss G:  0.6001, Loss D:  1.7008, 
-Epoch 177, Loss G: -1.4662, Loss D:  0.4249, 
-Epoch 178, Loss G:  0.7968, Loss D:  2.4183, 
-Epoch 179, Loss G: -0.5008, Loss D: -3.2819, 
-Epoch 180, Loss G:  3.2025, Loss D:  1.6330, 
-Epoch 181, Loss G: -3.4008, Loss D: -2.9158, 
-Epoch 182, Loss G: -1.3316, Loss D: -0.1720, 
-Epoch 183, Loss G:  0.7795, Loss D:  1.4675, 
-Epoch 184, Loss G:  0.9964, Loss D: -1.2111, 
-Epoch 185, Loss G:  0.1190, Loss D: -2.4352, 
-Epoch 186, Loss G: -0.8796, Loss D:  0.4247, 
-Epoch 187, Loss G:  0.2482, Loss D:  1.7915, 
-Epoch 188, Loss G:  0.9423, Loss D: -1.0045, 
-Epoch 189, Loss G:  1.8595, Loss D:  3.3566, 
-Epoch 190, Loss G: -0.1703, Loss D: -1.0761, 
-Epoch 191, Loss G:  2.7552, Loss D: -0.9134, 
-Epoch 192, Loss G:  1.0564, Loss D: -2.0308, 
-Epoch 193, Loss G:  2.2494, Loss D:  0.6950, 
-Epoch 194, Loss G: -2.7727, Loss D:  1.2587, 
-Epoch 195, Loss G:  1.1726, Loss D:  2.9145, 
-Epoch 196, Loss G: -0.2199, Loss D: -0.7884, 
-Epoch 197, Loss G:  0.1752, Loss D:  1.5923, 
-Epoch 198, Loss G: -2.3058, Loss D:  1.4846, 
-Epoch 199, Loss G: -2.0207, Loss D:  2.3265, 
-Epoch 200, Loss G:  0.0330, Loss D:  0.9871, 
-Epoch 201, Loss G: -0.7685, Loss D:  3.2335, 
-Epoch 202, Loss G: -0.9664, Loss D:  0.5753, 
-Epoch 203, Loss G: -1.5092, Loss D:  3.3115, 
-Epoch 204, Loss G: -1.3326, Loss D: -1.5189, 
-Epoch 205, Loss G: -2.5770, Loss D:  0.7393, 
-Epoch 206, Loss G: -0.5437, Loss D:  0.4176, 
-Epoch 207, Loss G:  1.9061, Loss D:  0.2853, 
-Epoch 208, Loss G:  0.8520, Loss D: -2.3635, 
-Epoch 209, Loss G: -0.1680, Loss D:  0.2499, 
-Epoch 210, Loss G:  1.3278, Loss D: -2.0579, 
-Epoch 211, Loss G: -0.3402, Loss D:  2.9380, 
-Epoch 212, Loss G: -0.5497, Loss D: -3.3697, 
-Epoch 213, Loss G:  0.0345, Loss D: -1.2016, 
-Epoch 214, Loss G: -0.0468, Loss D:  0.2734, 
-Epoch 215, Loss G:  1.1887, Loss D: -2.1391, 
-Epoch 216, Loss G: -2.6639, Loss D: -1.0702, 
-Epoch 217, Loss G: -1.9280, Loss D:  0.8692, 
-Epoch 218, Loss G: -0.2745, Loss D: -1.6011, 
-Epoch 219, Loss G: -3.6810, Loss D:  0.3896, 
-Epoch 220, Loss G: -0.1941, Loss D:  0.3544, 
-Epoch 221, Loss G:  0.7054, Loss D: -0.3183, 
-Epoch 222, Loss G: -0.4034, Loss D: -0.1303, 
-Epoch 223, Loss G:  0.0050, Loss D:  1.2048, 
-Epoch 224, Loss G:  0.9689, Loss D: -3.5862, 
-Epoch 225, Loss G:  0.2049, Loss D: -1.9626, 
-Epoch 226, Loss G:  0.4596, Loss D:  1.1554, 
-Epoch 227, Loss G: -1.5601, Loss D:  2.8447, 
-Epoch 228, Loss G:  0.5745, Loss D:  0.1641, 
-Epoch 229, Loss G:  0.5815, Loss D:  0.0464, 
-Epoch 230, Loss G:  0.7345, Loss D: -2.8902, 
-Epoch 231, Loss G: -0.2082, Loss D:  0.5498, 
-Epoch 232, Loss G: -0.8758, Loss D: -2.6900, 
-Epoch 233, Loss G:  0.5364, Loss D: -0.7734, 
-Epoch 234, Loss G: -1.6298, Loss D:  1.5067, 
-Epoch 235, Loss G: -0.0519, Loss D: -1.8834, 
-Epoch 236, Loss G: -1.3979, Loss D:  1.0259, 
-Epoch 237, Loss G: -1.0770, Loss D:  0.9921, 
-Epoch 238, Loss G: -1.0880, Loss D:  2.3383, 
-Epoch 239, Loss G: -2.3838, Loss D: -0.4659, 
-Epoch 240, Loss G:  0.0575, Loss D: -2.8876, 
-Epoch 241, Loss G: -0.0110, Loss D:  1.0124, 
-Epoch 242, Loss G: -2.1606, Loss D:  0.2186, 
-Epoch 243, Loss G: -1.3654, Loss D:  1.3293, 
-Epoch 244, Loss G: -1.6664, Loss D: -2.0315, 
-Epoch 245, Loss G:  0.2442, Loss D: -4.1540, 
-Epoch 246, Loss G:  2.8520, Loss D: -1.2760, 
-Epoch 247, Loss G: -1.4126, Loss D:  5.5933, 
-Epoch 248, Loss G:  2.6778, Loss D: -4.5395, 
-Epoch 249, Loss G:  3.2987, Loss D:  3.9234, 
-Epoch 250, Loss G: -1.9377, Loss D:  2.4341, 
-Epoch 251, Loss G: -2.2369, Loss D: -1.8666, 
-Epoch 252, Loss G:  1.1400, Loss D: -3.0217, 
-Epoch 253, Loss G:  1.1320, Loss D: -0.8367, 
-Epoch 254, Loss G: -0.8002, Loss D:  0.2714, 
-Epoch 255, Loss G: -0.6175, Loss D: -2.8443, 
-Epoch 256, Loss G:  1.7084, Loss D: -1.5010, 
-Epoch 257, Loss G: -1.1510, Loss D:  0.9827, 
-Epoch 258, Loss G:  1.1325, Loss D:  1.7319, 
-Epoch 259, Loss G:  0.2343, Loss D:  2.2883, 
-Epoch 260, Loss G: -2.4347, Loss D:  1.6992, 
-Epoch 261, Loss G: -0.8221, Loss D: -0.5376, 
-Epoch 262, Loss G: -2.1977, Loss D:  0.5058, 
-Epoch 263, Loss G:  4.4250, Loss D: -1.6572, 
-Epoch 264, Loss G: -0.2868, Loss D: -0.8857, 
-Epoch 265, Loss G: -0.1307, Loss D:  0.3597, 
-Epoch 266, Loss G: -0.7746, Loss D: -0.6605, 
-Epoch 267, Loss G: -2.8114, Loss D: -0.7054, 
-Epoch 268, Loss G:  2.6982, Loss D:  5.1560, 
-Epoch 269, Loss G: -1.5585, Loss D: -4.2244, 
-Epoch 270, Loss G: -2.4589, Loss D: -0.6284, 
-Epoch 271, Loss G:  1.6327, Loss D:  0.6206, 
-Epoch 272, Loss G:  1.3214, Loss D:  3.4166, 
-Epoch 273, Loss G: -1.6859, Loss D:  0.7021, 
-Epoch 274, Loss G:  2.0299, Loss D: -1.3715, 
-Epoch 275, Loss G:  2.3389, Loss D:  2.5091, 
-Epoch 276, Loss G:  0.4900, Loss D: -0.2502, 
-Epoch 277, Loss G: -1.6139, Loss D: -3.3625, 
-Epoch 278, Loss G:  1.3287, Loss D: -1.8721, 
-Epoch 279, Loss G:  0.2460, Loss D: -2.4730, 
-Epoch 280, Loss G: -0.5702, Loss D:  1.0780, 
-Epoch 281, Loss G:  1.5783, Loss D: -1.2675, 
-Epoch 282, Loss G:  2.3109, Loss D:  1.3836, 
-Epoch 283, Loss G: -2.1093, Loss D:  1.0817, 
-Epoch 284, Loss G:  0.1081, Loss D: -0.4867, 
-Epoch 285, Loss G: -0.6934, Loss D:  2.6359, 
-Epoch 286, Loss G: -0.0387, Loss D: -2.1539, 
-Epoch 287, Loss G:  0.5778, Loss D:  0.4852, 
-Epoch 288, Loss G: -1.6572, Loss D: -2.4501, 
-Epoch 289, Loss G:  1.4732, Loss D:  1.9803, 
-Epoch 290, Loss G: -1.0123, Loss D:  1.2224, 
-Epoch 291, Loss G:  1.9256, Loss D: -2.2495, 
-Epoch 292, Loss G: -0.1427, Loss D:  2.6943, 
-Epoch 293, Loss G: -0.0572, Loss D: -4.0377, 
-Epoch 294, Loss G: -1.3883, Loss D: -0.8724, 
-Epoch 295, Loss G:  4.8603, Loss D: -0.0433, 
-Epoch 296, Loss G:  0.7834, Loss D: -0.8805, 
-Epoch 297, Loss G: -1.0389, Loss D: -1.8803, 
-Epoch 298, Loss G: -0.3742, Loss D:  2.9916, 
-Epoch 299, Loss G: -0.0713, Loss D:  0.1230, 
-Epoch 300, Loss G: -1.2700, Loss D: -0.8223, 
-Epoch 301, Loss G: -0.5082, Loss D:  1.5345, 
-Epoch 302, Loss G: -2.0639, Loss D:  1.0185, 
-Epoch 303, Loss G: -2.2014, Loss D:  0.5605, 
-Epoch 304, Loss G: -0.2237, Loss D:  1.5915, 
-Epoch 305, Loss G: -2.0745, Loss D: -1.0902, 
-Epoch 306, Loss G:  1.6139, Loss D: -0.9404, 
-Epoch 307, Loss G: -0.7771, Loss D: -1.3648, 
-Epoch 308, Loss G: -2.0894, Loss D:  1.3202, 
-Epoch 309, Loss G:  0.8737, Loss D: -1.4289, 
-Epoch 310, Loss G: -0.7579, Loss D: -1.4042, 
-Epoch 311, Loss G: -0.4487, Loss D:  0.4356, 
-Epoch 312, Loss G: -0.1584, Loss D:  3.1776, 
-Epoch 313, Loss G: -4.4556, Loss D: -2.9042, 
-Epoch 314, Loss G: -1.2881, Loss D: -2.3755, 
-Epoch 315, Loss G: -1.0923, Loss D: -1.2886, 
-Epoch 316, Loss G: -2.9214, Loss D: -1.0555, 
-Epoch 317, Loss G:  0.4976, Loss D: -1.8926, 
-Epoch 318, Loss G: -0.3753, Loss D:  1.0704, 
-Epoch 319, Loss G: -0.5514, Loss D:  2.7361, 
-Epoch 320, Loss G: -0.1148, Loss D:  4.2246, 
-Epoch 321, Loss G: -1.1459, Loss D:  0.2877, 
-Epoch 322, Loss G: -1.5088, Loss D: -2.0037, 
-Epoch 323, Loss G:  0.1143, Loss D: -4.0795, 
-Epoch 324, Loss G: -1.8338, Loss D:  2.5090, 
-Epoch 325, Loss G: -0.1915, Loss D:  1.9532, 
-Epoch 326, Loss G:  0.1582, Loss D: -4.8575, 
-Epoch 327, Loss G: -2.0501, Loss D: -5.1453, 
-Epoch 328, Loss G: -2.0786, Loss D: -0.2914, 
-Epoch 329, Loss G: -1.4433, Loss D: -2.3886, 
-Epoch 330, Loss G: -2.7569, Loss D:  1.2738, 
-Epoch 331, Loss G: -0.3326, Loss D:  4.6925, 
-Epoch 332, Loss G: -1.7853, Loss D:  0.9260, 
-Epoch 333, Loss G:  0.6498, Loss D: -0.9195, 
-Epoch 334, Loss G: -3.8772, Loss D:  0.5728, 
-Epoch 335, Loss G: -0.9189, Loss D:  1.4006, 
-Epoch 336, Loss G: -0.5399, Loss D: -0.2031, 
-Epoch 337, Loss G: -0.7194, Loss D:  0.7315, 
-Epoch 338, Loss G: -2.4842, Loss D:  2.0605, 
-Epoch 339, Loss G:  0.8514, Loss D:  1.8196, 
-Epoch 340, Loss G:  0.0088, Loss D: -3.4666, 
-Epoch 341, Loss G: -1.3738, Loss D:  0.5587, 
-Epoch 342, Loss G: -0.3702, Loss D:  2.5120, 
-Epoch 343, Loss G:  1.0590, Loss D: -1.7097, 
-Epoch 344, Loss G: -2.3308, Loss D:  0.2212, 
-Epoch 345, Loss G: -2.0648, Loss D:  0.8518, 
-Epoch 346, Loss G:  0.3037, Loss D:  2.9152, 
-Epoch 347, Loss G: -3.1349, Loss D:  0.3961, 
-Epoch 348, Loss G:  2.1436, Loss D:  0.6248, 
-Epoch 349, Loss G: -1.5577, Loss D:  0.1711, 
-Epoch 350, Loss G: -0.0013, Loss D:  0.1165, 
-Epoch 351, Loss G: -1.6269, Loss D:  0.8687, 
-Epoch 352, Loss G:  1.8150, Loss D:  1.7591, 
-Epoch 353, Loss G:  1.6092, Loss D:  0.6060, 
-Epoch 354, Loss G: -2.5714, Loss D:  0.6984, 
-Epoch 355, Loss G:  1.9076, Loss D: -0.3781, 
-Epoch 356, Loss G: -0.4762, Loss D:  0.0856, 
-Epoch 357, Loss G:  0.0337, Loss D:  1.6261, 
-Epoch 358, Loss G:  0.8880, Loss D: -0.2465, 
-Epoch 359, Loss G: -1.4935, Loss D: -4.5004, 
-Epoch 360, Loss G:  0.7766, Loss D: -3.2537, 
-Epoch 361, Loss G: -2.5091, Loss D: -2.4980, 
-Epoch 362, Loss G: -2.2739, Loss D:  1.1649, 
-Epoch 363, Loss G:  0.4911, Loss D:  0.3622, 
-Epoch 364, Loss G: -1.9781, Loss D:  1.5253, 
-Epoch 365, Loss G: -1.0054, Loss D: -0.0132, 
-Epoch 366, Loss G: -1.8727, Loss D: -2.3153, 
-Epoch 367, Loss G:  2.1028, Loss D:  0.3746, 
-Epoch 368, Loss G: -0.0287, Loss D: -1.7370, 
-Epoch 369, Loss G:  2.3412, Loss D:  7.2926, 
-Epoch 370, Loss G:  1.1895, Loss D:  1.1665, 
-Epoch 371, Loss G:  1.3821, Loss D: -0.7551, 
-Epoch 372, Loss G: -3.4117, Loss D:  0.3225, 
-Epoch 373, Loss G: -1.7081, Loss D:  0.4116, 
-Epoch 374, Loss G: -0.5060, Loss D:  5.6173, 
-Epoch 375, Loss G: -1.2595, Loss D: -0.1025, 
-Epoch 376, Loss G: -0.0317, Loss D:  1.7749, 
-Epoch 377, Loss G: -3.2407, Loss D:  3.0217, 
-Epoch 378, Loss G: -0.7689, Loss D: -3.3068, 
-Epoch 379, Loss G: -0.1605, Loss D: -1.5848, 
-Epoch 380, Loss G: -0.6732, Loss D:  0.4951, 
-Epoch 381, Loss G: -0.7608, Loss D:  1.9817, 
-Epoch 382, Loss G: -3.8478, Loss D:  1.3545, 
-Epoch 383, Loss G:  0.6855, Loss D: -2.5007, 
-Epoch 384, Loss G: -0.6591, Loss D: -3.4842, 
-Epoch 385, Loss G: -1.2913, Loss D:  2.2847, 
-Epoch 386, Loss G:  0.6733, Loss D: -0.6141, 
-Epoch 387, Loss G: -4.0961, Loss D:  1.6856, 
-Epoch 388, Loss G: -0.8549, Loss D: -2.3106, 
-Epoch 389, Loss G:  0.1818, Loss D:  1.6019, 
-Epoch 390, Loss G: -3.6134, Loss D: -2.8887, 
-Epoch 391, Loss G: -2.8057, Loss D: -0.1515, 
-Epoch 392, Loss G: -0.3297, Loss D:  1.2239, 
-Epoch 393, Loss G: -1.9553, Loss D:  0.9300, 
-Epoch 394, Loss G: -0.1039, Loss D:  3.7303, 
-Epoch 395, Loss G: -0.8169, Loss D:  1.1866, 
-Epoch 396, Loss G:  1.2014, Loss D:  2.6846, 
-Epoch 397, Loss G: -0.5843, Loss D: -1.7146, 
-Epoch 398, Loss G:  0.0048, Loss D: -0.1146, 
-Epoch 399, Loss G:  0.2813, Loss D: -0.2467, 
-Epoch 400, Loss G:  1.6885, Loss D: -2.8236, 
-Epoch 401, Loss G:  2.4121, Loss D:  0.0285, 
-Epoch 402, Loss G:  1.5178, Loss D:  1.2517, 
-Epoch 403, Loss G: -1.3771, Loss D:  1.7257, 
-Epoch 404, Loss G:  0.6614, Loss D: -0.5513, 
-Epoch 405, Loss G:  0.1072, Loss D: -0.3082, 
-Epoch 406, Loss G: -1.2795, Loss D:  0.3751, 
-Epoch 407, Loss G:  0.2618, Loss D: -1.2071, 
-Epoch 408, Loss G:  1.0398, Loss D: -1.6397, 
-Epoch 409, Loss G: -1.9915, Loss D: -1.4809, 
-Epoch 410, Loss G:  0.5156, Loss D: -2.8183, 
-Epoch 411, Loss G: -0.5303, Loss D: -0.5499, 
-Epoch 412, Loss G: -1.8166, Loss D: -1.1890, 
-Epoch 413, Loss G: -1.6603, Loss D: -2.6575, 
-Epoch 414, Loss G: -2.7095, Loss D:  3.4436, 
-Epoch 415, Loss G: -2.3090, Loss D:  0.0744, 
-Epoch 416, Loss G: -0.3921, Loss D:  1.1943, 
-Epoch 417, Loss G: -3.5842, Loss D:  2.6864, 
-Epoch 418, Loss G:  0.5272, Loss D: -2.1067, 
-Epoch 419, Loss G:  0.6525, Loss D: -2.3980, 
-Epoch 420, Loss G:  1.0878, Loss D:  3.0541, 
-Epoch 421, Loss G: -2.7243, Loss D:  3.6331, 
-Epoch 422, Loss G: -0.8907, Loss D: -2.6702, 
-Epoch 423, Loss G: -0.4053, Loss D:  0.0256, 
-Epoch 424, Loss G:  0.5640, Loss D:  0.9084, 
-Epoch 425, Loss G:  0.9610, Loss D: -3.6126, 
-Epoch 426, Loss G: -1.4870, Loss D: -3.3963, 
-Epoch 427, Loss G:  0.8981, Loss D: -0.7742, 
-Epoch 428, Loss G: -0.5153, Loss D: -0.3379, 
-Epoch 429, Loss G: -0.4695, Loss D:  1.3977, 
-Epoch 430, Loss G:  1.5229, Loss D: -1.4743, 
-Epoch 431, Loss G: -2.1452, Loss D:  0.5174, 
-Epoch 432, Loss G:  0.7300, Loss D: -2.1705, 
-Epoch 433, Loss G: -3.0923, Loss D: -1.0227, 
-Epoch 434, Loss G:  2.6854, Loss D: -4.3427, 
-Epoch 435, Loss G: -0.6390, Loss D:  0.2245, 
-Epoch 436, Loss G:  1.8252, Loss D: -1.0829, 
-Epoch 437, Loss G: -0.6677, Loss D:  2.3222, 
-Epoch 438, Loss G:  0.2681, Loss D: -0.1966, 
-Epoch 439, Loss G:  4.1930, Loss D: -5.3702, 
-Epoch 440, Loss G: -0.5545, Loss D:  4.0434, 
-Epoch 441, Loss G: -1.6296, Loss D: -0.5557, 
-Epoch 442, Loss G:  1.4597, Loss D:  2.8340, 
-Epoch 443, Loss G: -0.1875, Loss D: -2.6339, 
-Epoch 444, Loss G:  0.1419, Loss D: -1.4248, 
-Epoch 445, Loss G: -0.0516, Loss D:  0.0805, 
-Epoch 446, Loss G: -0.2918, Loss D:  1.1939, 
-Epoch 447, Loss G: -0.5424, Loss D:  1.9189, 
-Epoch 448, Loss G:  0.1205, Loss D: -0.6108, 
-Epoch 449, Loss G: -1.9683, Loss D:  0.0843, 
-Epoch 450, Loss G: -3.0264, Loss D: -0.2138, 
-Epoch 451, Loss G:  0.6677, Loss D: -1.7355, 
-Epoch 452, Loss G: -1.7639, Loss D: -0.4959, 
-Epoch 453, Loss G: -1.9649, Loss D:  3.2240, 
-Epoch 454, Loss G: -1.5674, Loss D: -3.4792, 
-Epoch 455, Loss G:  1.4127, Loss D:  1.7455, 
-Epoch 456, Loss G: -1.9364, Loss D: -0.1454, 
-Epoch 457, Loss G:  2.3079, Loss D: -2.5860, 
-Epoch 458, Loss G: -0.7337, Loss D:  1.6157, 
-Epoch 459, Loss G: -2.7444, Loss D:  0.3014, 
-Epoch 460, Loss G: -1.2942, Loss D: -0.5379, 
-Epoch 461, Loss G:  2.4731, Loss D: -2.1303, 
-Epoch 462, Loss G: -0.4887, Loss D:  2.9220, 
-Epoch 463, Loss G:  0.3911, Loss D:  0.3230, 
-Epoch 464, Loss G: -3.3629, Loss D:  1.9145, 
-Epoch 465, Loss G:  0.9250, Loss D: -0.1021, 
-Epoch 466, Loss G:  1.5219, Loss D: -1.3059, 
-Epoch 467, Loss G: -0.4433, Loss D: -2.6359, 
-Epoch 468, Loss G: -1.1411, Loss D:  0.3086, 
-Epoch 469, Loss G:  0.8269, Loss D: -0.1118, 
-Epoch 470, Loss G:  1.1706, Loss D:  0.2460, 
-Epoch 471, Loss G: -0.8024, Loss D:  1.7258, 
-Epoch 472, Loss G: -0.5718, Loss D: -0.3033, 
-Epoch 473, Loss G:  0.8803, Loss D:  0.0153, 
-Epoch 474, Loss G:  1.4000, Loss D: -0.2809, 
-Epoch 475, Loss G: -0.4587, Loss D:  3.8101, 
-Epoch 476, Loss G:  0.1837, Loss D:  1.5334, 
-Epoch 477, Loss G:  0.1832, Loss D:  1.2478, 
-Epoch 478, Loss G: -1.4349, Loss D:  0.8212, 
-Epoch 479, Loss G:  0.5430, Loss D: -1.2768, 
-Epoch 480, Loss G: -1.3083, Loss D: -1.1591, 
-Epoch 481, Loss G: -1.4052, Loss D: -0.3831, 
-Epoch 482, Loss G: -1.9604, Loss D: -3.3167, 
-Epoch 483, Loss G:  1.2376, Loss D: -0.6390, 
-Epoch 484, Loss G: -1.0790, Loss D:  0.2666, 
-Epoch 485, Loss G:  0.2356, Loss D:  1.3318, 
-Epoch 486, Loss G: -1.3847, Loss D:  0.8220, 
-Epoch 487, Loss G:  0.5002, Loss D:  2.3218, 
-Epoch 488, Loss G: -0.8833, Loss D: -1.8917, 
-Epoch 489, Loss G:  0.5303, Loss D:  2.4881, 
-Epoch 490, Loss G: -0.3869, Loss D:  1.0512, 
-Epoch 491, Loss G: -0.3250, Loss D: -2.6791, 
-Epoch 492, Loss G:  3.0177, Loss D:  1.3176, 
-Epoch 493, Loss G: -3.2617, Loss D:  0.9682, 
-Epoch 494, Loss G:  1.6335, Loss D: -0.7150, 
-Epoch 495, Loss G:  0.0715, Loss D: -2.3803, 
-Epoch 496, Loss G: -0.0783, Loss D:  0.3751, 
-Epoch 497, Loss G: -3.7633, Loss D:  2.1030, 
-Epoch 498, Loss G: -0.3211, Loss D:  0.3902, 
-Epoch 499, Loss G: -0.2902, Loss D: -0.2927, 
-Epoch 500, Loss G:  0.1270, Loss D: -2.6567, 
-Epoch 501, Loss G: -0.6360, Loss D: -2.0761, 
-Epoch 502, Loss G: -2.4023, Loss D: -1.9971, 
-Epoch 503, Loss G:  1.0881, Loss D: -0.4642, 
-Epoch 504, Loss G: -0.1299, Loss D:  2.5483, 
-Epoch 505, Loss G:  0.9446, Loss D:  1.1563, 
-Epoch 506, Loss G: -1.5298, Loss D:  1.2395, 
-Epoch 507, Loss G: -2.2345, Loss D: -0.9314, 
-Epoch 508, Loss G:  0.8086, Loss D: -2.3279, 
-Epoch 509, Loss G:  0.4118, Loss D: -1.4844, 
-Epoch 510, Loss G: -0.7657, Loss D: -0.2030, 
-Epoch 511, Loss G:  1.5272, Loss D: -0.3003, 
-Epoch 512, Loss G: -0.7147, Loss D:  1.6220, 
-Epoch 513, Loss G: -0.3848, Loss D:  1.2819, 
-Epoch 514, Loss G: -2.4761, Loss D:  1.7555, 
-Epoch 515, Loss G: -0.4481, Loss D: -0.8970, 
-Epoch 516, Loss G:  0.9881, Loss D: -3.6608, 
-Epoch 517, Loss G:  2.1431, Loss D: -2.5436, 
-Epoch 518, Loss G: -1.6425, Loss D:  2.7763, 
-Epoch 519, Loss G: -3.6842, Loss D: -4.4534, 
-Epoch 520, Loss G: -1.1914, Loss D: -3.8170, 
-Epoch 521, Loss G: -0.5035, Loss D: -3.1755, 
-Epoch 522, Loss G: -0.0641, Loss D:  0.7486, 
-Epoch 523, Loss G: -1.2172, Loss D:  1.5815, 
-Epoch 524, Loss G: -2.7305, Loss D: -0.6549, 
-Epoch 525, Loss G:  0.8349, Loss D: -2.3703, 
-Epoch 526, Loss G:  0.5919, Loss D: -1.7803, 
-Epoch 527, Loss G:  0.8354, Loss D: -0.0587, 
-Epoch 528, Loss G: -0.5086, Loss D: -1.2673, 
-Epoch 529, Loss G: -0.9778, Loss D:  0.3309, 
-Epoch 530, Loss G: -1.7963, Loss D:  0.1113, 
-Epoch 531, Loss G:  2.9385, Loss D:  4.4892, 
-Epoch 532, Loss G: -3.7600, Loss D: -2.9622, 
-Epoch 533, Loss G: -3.0119, Loss D: -0.6688, 
-Epoch 534, Loss G:  1.5931, Loss D:  3.4988, 
-Epoch 535, Loss G: -2.3036, Loss D: -0.9102, 
-Epoch 536, Loss G: -0.8774, Loss D:  1.3547, 
-Epoch 537, Loss G: -1.3291, Loss D: -3.0206, 
-Epoch 538, Loss G:  0.4310, Loss D: -1.5059, 
-Epoch 539, Loss G: -1.8548, Loss D: -3.0769, 
-Epoch 540, Loss G: -1.9081, Loss D: -1.0469, 
-Epoch 541, Loss G: -1.6299, Loss D:  0.4098, 
-Epoch 542, Loss G: -0.1142, Loss D: -0.1552, 
-Epoch 543, Loss G: -2.9549, Loss D: -0.2190, 
-Epoch 544, Loss G:  1.8541, Loss D:  0.8780, 
-Epoch 545, Loss G:  2.7503, Loss D: -2.2326, 
-Epoch 546, Loss G:  2.3430, Loss D:  0.6070, 
-Epoch 547, Loss G:  0.4512, Loss D:  1.0565, 
-Epoch 548, Loss G:  1.5707, Loss D:  0.7652, 
-Epoch 549, Loss G: -1.6511, Loss D:  0.0339, 
-Epoch 550, Loss G: -0.4586, Loss D:  1.9998, 
-Epoch 551, Loss G: -0.0657, Loss D: -2.8866, 
-Epoch 552, Loss G:  0.3644, Loss D:  1.5666, 
-Epoch 553, Loss G:  2.4596, Loss D:  3.7982, 
-Epoch 554, Loss G: -1.5847, Loss D: -4.8194, 
-Epoch 555, Loss G:  0.9963, Loss D: -2.6922, 
-Epoch 556, Loss G:  0.6840, Loss D: -3.8162, 
-Epoch 557, Loss G: -0.8503, Loss D: -1.8702, 
-Epoch 558, Loss G: -1.4482, Loss D: -4.4342, 
-Epoch 559, Loss G:  1.1860, Loss D:  1.0956, 
-Epoch 560, Loss G: -0.0424, Loss D:  2.5360, 
-Epoch 561, Loss G: -2.9164, Loss D:  2.4618, 
-Epoch 562, Loss G:  1.1362, Loss D:  0.2114, 
-Epoch 563, Loss G: -4.8991, Loss D: -0.8692, 
-Epoch 564, Loss G:  0.8916, Loss D: -0.3255, 
-Epoch 565, Loss G: -1.0916, Loss D: -1.5064, 
-Epoch 566, Loss G:  0.2756, Loss D:  1.4560, 
-Epoch 567, Loss G: -0.9358, Loss D: -3.3741, 
-Epoch 568, Loss G:  2.1214, Loss D:  2.6592, 
-Epoch 569, Loss G: -1.4268, Loss D:  2.3762, 
-Epoch 570, Loss G: -2.7958, Loss D: -1.0589, 
-Epoch 571, Loss G: -0.8545, Loss D:  3.6277, 
-Epoch 572, Loss G:  0.0051, Loss D:  3.6491, 
-Epoch 573, Loss G: -2.0326, Loss D: -0.5317, 
-Epoch 574, Loss G: -1.1921, Loss D:  0.5745, 
-Epoch 575, Loss G:  1.0644, Loss D: -1.7651, 
-Epoch 576, Loss G: -1.2998, Loss D:  2.8962, 
-Epoch 577, Loss G:  1.3046, Loss D: -2.6668, 
-Epoch 578, Loss G:  1.5642, Loss D:  0.4951, 
-Epoch 579, Loss G: -1.0442, Loss D:  2.7654, 
-Epoch 580, Loss G:  2.3750, Loss D:  2.6673, 
-Epoch 581, Loss G: -0.5360, Loss D:  1.9815, 
-Epoch 582, Loss G: -5.3751, Loss D: -0.9372, 
-Epoch 583, Loss G:  3.0980, Loss D: -3.5271, 
-Epoch 584, Loss G: -0.5124, Loss D:  0.7823, 
-Epoch 585, Loss G:  0.0935, Loss D: -0.3358, 
-Epoch 586, Loss G:  2.4253, Loss D: -0.2926, 
-Epoch 587, Loss G: -0.3897, Loss D: -5.1036, 
-Epoch 588, Loss G: -0.8676, Loss D: -4.6755, 
-Epoch 589, Loss G:  2.4363, Loss D:  4.9799, 
-Epoch 590, Loss G:  2.3737, Loss D:  2.8472, 
-Epoch 591, Loss G: -1.6699, Loss D:  1.5207, 
-Epoch 592, Loss G:  0.8241, Loss D:  1.4493, 
-Epoch 593, Loss G: -0.5753, Loss D: -1.4697, 
-Epoch 594, Loss G: -0.5346, Loss D:  2.5170, 
-Epoch 595, Loss G:  1.4082, Loss D:  0.9973, 
-Epoch 596, Loss G:  2.3218, Loss D: -2.6320, 
-Epoch 597, Loss G: -1.2413, Loss D: -1.0613, 
-Epoch 598, Loss G: -0.4175, Loss D:  1.9689, 
-Epoch 599, Loss G: -0.0504, Loss D: -1.9990, 
-Epoch 600, Loss G:  0.4743, Loss D: -0.4653, 
-Epoch 601, Loss G:  0.4899, Loss D:  0.8656, 
-Epoch 602, Loss G:  0.7257, Loss D: -4.5362, 
-Epoch 603, Loss G:  0.1950, Loss D:  0.7601, 
-Epoch 604, Loss G: -3.0482, Loss D: -0.1597, 
-Epoch 605, Loss G:  0.4658, Loss D: -2.6773, 
-Epoch 606, Loss G: -1.3490, Loss D:  4.5461, 
-Traceback (most recent call last):
-  File "/home/jorit/PET-experiments/main.py", line 125, in <module>
-    with pyRAPL.Measurement(f'syn_{synthesizer}', output=csv_output):
-  File "/home/jorit/.local/lib/python3.10/site-packages/pyRAPL/measurement.py", line 70, in __exit__
-    self.export()
-  File "/home/jorit/.local/lib/python3.10/site-packages/pyRAPL/measurement.py", line 95, in export
-    self._output.add(self._results)
-  File "/home/jorit/.local/lib/python3.10/site-packages/pyRAPL/outputs/buffered_output.py", line 51, in add
-    x['dram'] = result.dram[i]
-TypeError: 'NoneType' object is not subscriptable
-2024-08-28 20:15:21.714203: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2024-08-28 20:15:21.736815: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2024-08-28 20:15:21.736839: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2024-08-28 20:15:21.737412: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2024-08-28 20:15:21.740849: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2024-08-28 20:15:22.186349: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
-[KeOps] Warning : Cuda libraries were not detected on the system or could not be loaded ; using cpu only mode
-Namespace(label=['student', 'breast', 'heart'], generators=['dpctgan', 'ydata', 'ctgan', 'synthcity', 'nbsynthetic'], phases=[1, 2, 3, 4], tasks=['knn', 'lr', 'nn'], amount=1, verbose=True)
-
-
-=============================
- ========= RUN 1 =========
- =============================
-
-
-
-
-=== Measurement for synthetic data generator 'dpctgan' ===
-
-
-Starting data set: student
-- Measuring cleaning
-- Measuring synthetic data generation
-object age
-object Medu
-object Fedu
-object traveltime
-object studytime
-object failures
-object famrel
-object freetime
-object goout
-object Dalc
-object Walc
-object health
-object absences
-object G1
-object G2
-object G3
-Init CTGAN with differential privacy.  Target epsilon: 3
-Epoch 1, Loss G:  0.9877, Loss D: -0.8026, 
-Epoch 2, Loss G: -0.5263, Loss D:  0.3979, 
-Epoch 3, Loss G:  0.2354, Loss D: -0.2548, 
-Epoch 4, Loss G:  0.3608, Loss D:  0.0362, 
-Epoch 5, Loss G:  0.7271, Loss D:  0.6260, 
-- Measuring preprocessing (dpctgan)
-- Measuring machine learning task
-  * knn (dpctgan)
-  * lr (dpctgan)
-  * nn (dpctgan)
-Starting data set: breast
-- Measuring cleaning
-- Measuring synthetic data generation
-object deg-malig
-Init CTGAN with differential privacy.  Target epsilon: 3
-Epoch 1, Loss G:  1.2692, Loss D: -0.0072, 
-- Measuring preprocessing (dpctgan)
-- Measuring machine learning task
-  * knn (dpctgan)
-  * lr (dpctgan)
-  * nn (dpctgan)
-Starting data set: heart
-- Measuring cleaning
-- Measuring synthetic data generation
-object num
-Init CTGAN with differential privacy.  Target epsilon: 3
-Epoch 1, Loss G:  1.9451, Loss D: -0.0491, 
-- Measuring preprocessing (dpctgan)
-- Measuring machine learning task
-  * knn (dpctgan)
-  * lr (dpctgan)
-  * nn (dpctgan)
-
-
-=== Measurement for synthetic data generator 'ydata' ===
-
-
-Starting data set: student
-- Measuring cleaning
-- Measuring synthetic data generation
-Epoch: 0 | critic_loss: 0.406279593706131 | generator_loss: 1.76616632938385
-- Measuring preprocessing (ydata)
-- Measuring machine learning task
-  * knn (ydata)
-  * lr (ydata)
-  * nn (ydata)
-Starting data set: breast
-- Measuring cleaning
-- Measuring synthetic data generation
-Epoch: 0 | critic_loss: 6.055834770202637 | generator_loss: 1.3730930089950562
-- Measuring preprocessing (ydata)
-- Measuring machine learning task
-  * knn (ydata)
-  * lr (ydata)
-  * nn (ydata)
-Starting data set: heart
-- Measuring cleaning
-- Measuring synthetic data generation
-Epoch: 0 | critic_loss: 1.4191317558288574 | generator_loss: 2.149350643157959
-- Measuring preprocessing (ydata)
-- Measuring machine learning task
-  * knn (ydata)
-  * lr (ydata)
-  * nn (ydata)
-
-
-=== Measurement for synthetic data generator 'ctgan' ===
-
-
-Starting data set: student
-- Measuring cleaning
-- Measuring synthetic data generation
-- Measuring preprocessing (ctgan)
-- Measuring machine learning task
-  * knn (ctgan)
-  * lr (ctgan)
-  * nn (ctgan)
-Starting data set: breast
-- Measuring cleaning
-- Measuring synthetic data generation
-- Measuring preprocessing (ctgan)
-- Measuring machine learning task
-  * knn (ctgan)
-  * lr (ctgan)
-  * nn (ctgan)
-Starting data set: heart
-- Measuring cleaning
-- Measuring synthetic data generation
-- Measuring preprocessing (ctgan)
-- Measuring machine learning task
-  * knn (ctgan)
-  * lr (ctgan)
-  * nn (ctgan)
-
-
-=== Measurement for synthetic data generator 'synthcity' ===
-
-
-Starting data set: student
-- Measuring cleaning
-- Measuring synthetic data generation
-Traceback (most recent call last):
-  File "/home/jorit/PET-experiments/main.py", line 126, in <module>
-    generator_function(label, dict[label])
-  File "/home/jorit/PET-experiments/Phase2SyntheticDataGeneration.py", line 173, in synthcity
-    target_column=dict['target_column'])
-KeyError: 'target_column'
-2024-08-29 09:46:20.540695: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2024-08-29 09:46:20.563467: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2024-08-29 09:46:20.563492: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2024-08-29 09:46:20.564056: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2024-08-29 09:46:20.567480: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2024-08-29 09:46:21.012556: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
-[KeOps] Warning : Cuda libraries were not detected on the system or could not be loaded ; using cpu only mode
-Namespace(label=['student', 'breast', 'heart'], generators=['dpctgan', 'ydata', 'ctgan', 'synthcity', 'nbsynthetic'], phases=[1, 2, 3, 4], tasks=['knn', 'lr', 'nn'], amount=1, verbose=True)
-
-
-=============================
- ========= RUN 1 =========
- =============================
-
-
-
-
-=== Measurement for synthetic data generator 'dpctgan' ===
-
-
-Starting data set: student
-- Measuring cleaning
-- Measuring synthetic data generation
-object age
-object Medu
-object Fedu
-object traveltime
-object studytime
-object failures
-object famrel
-object freetime
-object goout
-object Dalc
-object Walc
-object health
-object absences
-object G1
-object G2
-object G3
-Init CTGAN with differential privacy.  Target epsilon: 3
-Epoch 1, Loss G:  0.9877, Loss D: -0.8026, 
-Epoch 2, Loss G: -0.5263, Loss D:  0.3979, 
-Epoch 3, Loss G:  0.2354, Loss D: -0.2548, 
-Epoch 4, Loss G:  0.3608, Loss D:  0.0362, 
-Epoch 5, Loss G:  0.7271, Loss D:  0.6260, 
-- Measuring preprocessing (dpctgan)
-- Measuring machine learning task
-  * knn (dpctgan)
-  * lr (dpctgan)
-  * nn (dpctgan)
-Starting data set: breast
-- Measuring cleaning
-- Measuring synthetic data generation
-object deg-malig
-Init CTGAN with differential privacy.  Target epsilon: 3
-Epoch 1, Loss G:  1.2692, Loss D: -0.0072, 
-- Measuring preprocessing (dpctgan)
-- Measuring machine learning task
-  * knn (dpctgan)
-  * lr (dpctgan)
-  * nn (dpctgan)
-Starting data set: heart
-- Measuring cleaning
-- Measuring synthetic data generation
-object num
-Init CTGAN with differential privacy.  Target epsilon: 3
-Epoch 1, Loss G:  1.9451, Loss D: -0.0491, 
-[2024-08-29T09:49:12.213958+0000][1792312][CRITICAL] load failed: Cannot find DGL C++ graphbolt library at /home/jorit/.local/lib/python3.10/site-packages/dgl/graphbolt/libgraphbolt_pytorch_1.13.1.so
-[2024-08-29T09:49:12.214181+0000][1792312][CRITICAL] load failed: module 'synthcity.plugins.generic.plugin_goggle' has no attribute 'plugin'
-[2024-08-29T09:49:12.214229+0000][1792312][CRITICAL] module plugin_goggle load failed
-- Measuring preprocessing (dpctgan)
-- Measuring machine learning task
-  * knn (dpctgan)
-  * lr (dpctgan)
-  * nn (dpctgan)
-
-
-=== Measurement for synthetic data generator 'ydata' ===
-
-
-Starting data set: student
-- Measuring cleaning
-- Measuring synthetic data generation
-Epoch: 0 | critic_loss: 0.5471416711807251 | generator_loss: 1.8515324592590332
-- Measuring preprocessing (ydata)
-- Measuring machine learning task
-  * knn (ydata)
-  * lr (ydata)
-  * nn (ydata)
-Starting data set: breast
-- Measuring cleaning
-- Measuring synthetic data generation
-Epoch: 0 | critic_loss: 6.291754722595215 | generator_loss: 1.267634630203247
-- Measuring preprocessing (ydata)
-- Measuring machine learning task
-  * knn (ydata)
-  * lr (ydata)
-  * nn (ydata)
-Starting data set: heart
-- Measuring cleaning
-- Measuring synthetic data generation
-Epoch: 0 | critic_loss: 2.005213737487793 | generator_loss: 2.210655927658081
-- Measuring preprocessing (ydata)
-- Measuring machine learning task
-  * knn (ydata)
-  * lr (ydata)
-  * nn (ydata)
-
-
-=== Measurement for synthetic data generator 'ctgan' ===
-
-
-Starting data set: student
-- Measuring cleaning
-- Measuring synthetic data generation
-- Measuring preprocessing (ctgan)
-- Measuring machine learning task
-  * knn (ctgan)
-  * lr (ctgan)
-  * nn (ctgan)
-Starting data set: breast
-- Measuring cleaning
-- Measuring synthetic data generation
-- Measuring preprocessing (ctgan)
-- Measuring machine learning task
-  * knn (ctgan)
-  * lr (ctgan)
-  * nn (ctgan)
-Starting data set: heart
-- Measuring cleaning
-- Measuring synthetic data generation
-- Measuring preprocessing (ctgan)
-- Measuring machine learning task
-  * knn (ctgan)
-  * lr (ctgan)
-  * nn (ctgan)
-
-
-=== Measurement for synthetic data generator 'synthcity' ===
-
-
-Starting data set: student
-- Measuring cleaning
-- Measuring synthetic data generation
-  0%|          | 0/10000 [00:00<?, ?it/s]  0%|          | 2/10000 [00:00<16:15, 10.25it/s]  0%|          | 4/10000 [00:00<15:55, 10.47it/s]  0%|          | 6/10000 [00:00<15:18, 10.88it/s]  0%|          | 8/10000 [00:00<15:07, 11.01it/s]  0%|          | 10/10000 [00:00<14:59, 11.10it/s]  0%|          | 12/10000 [00:01<15:00, 11.09it/s]  0%|          | 14/10000 [00:01<15:00, 11.09it/s]  0%|          | 16/10000 [00:01<15:03, 11.04it/s]  0%|          | 18/10000 [00:01<15:07, 11.00it/s]  0%|          | 20/10000 [00:01<15:09, 10.97it/s]  0%|          | 22/10000 [00:02<15:09, 10.97it/s]  0%|          | 24/10000 [00:02<15:13, 10.92it/s]  0%|          | 26/10000 [00:02<15:16, 10.89it/s]  0%|          | 28/10000 [00:02<15:07, 10.99it/s]  0%|          | 30/10000 [00:02<15:17, 10.87it/s]  0%|          | 32/10000 [00:02<15:03, 11.04it/s]  0%|          | 34/10000 [00:03<14:49, 11.21it/s]  0%|          | 36/10000 [00:03<14:56, 11.11it/s]  0%|          | 38/10000 [00:03<14:48, 11.21it/s]  0%|          | 40/10000 [00:03<14:45, 11.25it/s]  0%|          | 42/10000 [00:03<14:45, 11.25it/s]  0%|          | 44/10000 [00:03<15:06, 10.99it/s]  0%|          | 46/10000 [00:04<15:14, 10.89it/s]  0%|          | 48/10000 [00:04<15:19, 10.82it/s]  0%|          | 50/10000 [00:05<26:52,  6.17it/s]  1%|          | 52/10000 [00:05<22:30,  7.37it/s]  1%|          | 54/10000 [00:05<19:27,  8.52it/s]  1%|          | 56/10000 [00:05<17:17,  9.58it/s]  1%|          | 58/10000 [00:05<16:03, 10.32it/s]  1%|          | 60/10000 [00:05<15:21, 10.78it/s]  1%|          | 62/10000 [00:05<14:53, 11.12it/s]  1%|          | 64/10000 [00:06<14:31, 11.40it/s]  1%|          | 66/10000 [00:06<14:14, 11.63it/s]  1%|          | 68/10000 [00:06<14:03, 11.77it/s]  1%|          | 70/10000 [00:06<14:14, 11.62it/s]  1%|          | 72/10000 [00:06<14:34, 11.35it/s]  1%|          | 74/10000 [00:07<14:53, 11.11it/s]  1%|          | 76/10000 [00:07<15:09, 10.91it/s]  1%|          | 78/10000 [00:07<15:25, 10.72it/s]  1%|          | 80/10000 [00:07<15:37, 10.58it/s]  1%|          | 82/10000 [00:07<15:30, 10.66it/s]  1%|          | 84/10000 [00:07<15:31, 10.65it/s]  1%|          | 86/10000 [00:08<15:30, 10.66it/s]  1%|          | 88/10000 [00:08<15:29, 10.66it/s]  1%|          | 90/10000 [00:08<15:25, 10.70it/s]  1%|          | 92/10000 [00:08<15:22, 10.74it/s]  1%|          | 94/10000 [00:08<15:18, 10.78it/s]  1%|          | 96/10000 [00:09<15:16, 10.80it/s]  1%|          | 98/10000 [00:09<15:27, 10.67it/s]  1%|          | 100/10000 [00:10<30:57,  5.33it/s]  1%|          | 101/10000 [00:10<28:28,  5.80it/s]  1%|          | 103/10000 [00:10<24:19,  6.78it/s]  1%|          | 105/10000 [00:10<21:39,  7.62it/s]  1%|          | 107/10000 [00:10<19:39,  8.39it/s]  1%|          | 109/10000 [00:10<18:19,  9.00it/s]  1%|          | 111/10000 [00:11<17:24,  9.47it/s]  1%|          | 113/10000 [00:11<16:48,  9.80it/s]  1%|          | 115/10000 [00:11<16:44,  9.84it/s]  1%|          | 117/10000 [00:11<16:40,  9.88it/s]  1%|          | 119/10000 [00:11<16:44,  9.83it/s]  1%|          | 121/10000 [00:12<17:30,  9.41it/s]  1%|          | 122/10000 [00:12<17:59,  9.15it/s]  1%|          | 123/10000 [00:12<18:09,  9.07it/s]  1%|          | 124/10000 [00:12<18:44,  8.78it/s]  1%|▏         | 125/10000 [00:12<19:35,  8.40it/s]  1%|▏         | 126/10000 [00:12<19:59,  8.23it/s]  1%|▏         | 127/10000 [00:12<19:56,  8.25it/s]  1%|▏         | 128/10000 [00:13<20:01,  8.22it/s]  1%|▏         | 129/10000 [00:13<20:35,  7.99it/s]  1%|▏         | 130/10000 [00:13<21:04,  7.81it/s]  1%|▏         | 131/10000 [00:13<22:05,  7.44it/s]  1%|▏         | 132/10000 [00:13<21:46,  7.56it/s]  1%|▏         | 133/10000 [00:13<21:50,  7.53it/s]  1%|▏         | 134/10000 [00:13<22:17,  7.38it/s]  1%|▏         | 135/10000 [00:13<23:02,  7.14it/s]  1%|▏         | 136/10000 [00:14<23:09,  7.10it/s]  1%|▏         | 137/10000 [00:14<23:13,  7.08it/s]  1%|▏         | 138/10000 [00:14<23:37,  6.96it/s]  1%|▏         | 139/10000 [00:14<22:38,  7.26it/s]  1%|▏         | 140/10000 [00:14<22:28,  7.31it/s]  1%|▏         | 141/10000 [00:14<22:40,  7.25it/s]  1%|▏         | 142/10000 [00:14<22:26,  7.32it/s]  1%|▏         | 143/10000 [00:15<22:24,  7.33it/s]  1%|▏         | 144/10000 [00:15<22:38,  7.25it/s]  1%|▏         | 145/10000 [00:15<22:56,  7.16it/s]  1%|▏         | 146/10000 [00:15<21:57,  7.48it/s]  1%|▏         | 147/10000 [00:15<22:30,  7.30it/s]  1%|▏         | 148/10000 [00:15<23:09,  7.09it/s]  1%|▏         | 149/10000 [00:15<22:22,  7.34it/s]  2%|▏         | 150/10000 [00:16<48:52,  3.36it/s]  2%|▏         | 151/10000 [00:16<39:49,  4.12it/s]  2%|▏         | 152/10000 [00:16<33:34,  4.89it/s]  2%|▏         | 153/10000 [00:16<29:18,  5.60it/s]  2%|▏         | 154/10000 [00:17<26:23,  6.22it/s]  2%|▏         | 155/10000 [00:17<24:33,  6.68it/s]  2%|▏         | 156/10000 [00:17<23:20,  7.03it/s]  2%|▏         | 157/10000 [00:17<22:20,  7.35it/s]  2%|▏         | 158/10000 [00:17<22:09,  7.40it/s]  2%|▏         | 159/10000 [00:17<21:39,  7.57it/s]  2%|▏         | 160/10000 [00:17<21:25,  7.65it/s]  2%|▏         | 161/10000 [00:17<22:04,  7.43it/s]  2%|▏         | 162/10000 [00:18<22:42,  7.22it/s]  2%|▏         | 163/10000 [00:18<22:48,  7.19it/s]  2%|▏         | 164/10000 [00:18<22:41,  7.22it/s]  2%|▏         | 165/10000 [00:18<23:07,  7.09it/s]  2%|▏         | 166/10000 [00:18<23:38,  6.93it/s]  2%|▏         | 167/10000 [00:18<24:05,  6.80it/s]  2%|▏         | 168/10000 [00:18<23:42,  6.91it/s]  2%|▏         | 169/10000 [00:19<24:04,  6.81it/s]  2%|▏         | 170/10000 [00:19<24:27,  6.70it/s]  2%|▏         | 171/10000 [00:19<23:48,  6.88it/s]  2%|▏         | 172/10000 [00:19<23:13,  7.05it/s]  2%|▏         | 173/10000 [00:19<22:54,  7.15it/s]  2%|▏         | 174/10000 [00:19<22:17,  7.35it/s]  2%|▏         | 175/10000 [00:19<22:28,  7.29it/s]  2%|▏         | 176/10000 [00:20<23:28,  6.97it/s]  2%|▏         | 177/10000 [00:20<23:27,  6.98it/s]  2%|▏         | 178/10000 [00:20<22:52,  7.16it/s]  2%|▏         | 179/10000 [00:20<23:06,  7.09it/s]  2%|▏         | 180/10000 [00:20<23:32,  6.95it/s]  2%|▏         | 181/10000 [00:20<23:50,  6.86it/s]  2%|▏         | 182/10000 [00:20<23:31,  6.95it/s]  2%|▏         | 183/10000 [00:21<22:52,  7.15it/s]  2%|▏         | 184/10000 [00:21<22:43,  7.20it/s]  2%|▏         | 185/10000 [00:21<23:18,  7.02it/s]  2%|▏         | 186/10000 [00:21<23:14,  7.04it/s]  2%|▏         | 187/10000 [00:21<22:59,  7.12it/s]  2%|▏         | 188/10000 [00:21<22:15,  7.35it/s]  2%|▏         | 189/10000 [00:21<22:13,  7.36it/s]  2%|▏         | 190/10000 [00:22<22:31,  7.26it/s]  2%|▏         | 191/10000 [00:22<22:32,  7.25it/s]  2%|▏         | 192/10000 [00:22<22:54,  7.13it/s]  2%|▏         | 193/10000 [00:22<23:31,  6.95it/s]  2%|▏         | 194/10000 [00:22<23:53,  6.84it/s]  2%|▏         | 195/10000 [00:22<23:55,  6.83it/s]  2%|▏         | 196/10000 [00:22<23:18,  7.01it/s]  2%|▏         | 197/10000 [00:23<22:53,  7.14it/s]  2%|▏         | 198/10000 [00:23<22:30,  7.26it/s]  2%|▏         | 199/10000 [00:23<22:58,  7.11it/s]  2%|▏         | 200/10000 [00:24<47:35,  3.43it/s]  2%|▏         | 201/10000 [00:24<39:01,  4.18it/s]  2%|▏         | 202/10000 [00:24<33:16,  4.91it/s]  2%|▏         | 203/10000 [00:24<29:09,  5.60it/s]  2%|▏         | 204/10000 [00:24<26:11,  6.23it/s]  2%|▏         | 205/10000 [00:24<24:05,  6.78it/s]  2%|▏         | 206/10000 [00:24<22:34,  7.23it/s]  2%|▏         | 207/10000 [00:24<22:08,  7.37it/s]  2%|▏         | 208/10000 [00:24<21:38,  7.54it/s]  2%|▏         | 209/10000 [00:25<21:54,  7.45it/s]  2%|▏         | 210/10000 [00:25<21:38,  7.54it/s]  2%|▏         | 211/10000 [00:25<21:41,  7.52it/s]  2%|▏         | 212/10000 [00:25<21:29,  7.59it/s]  2%|▏         | 213/10000 [00:25<21:19,  7.65it/s]  2%|▏         | 214/10000 [00:25<21:12,  7.69it/s]  2%|▏         | 215/10000 [00:25<21:01,  7.76it/s]  2%|▏         | 216/10000 [00:26<20:41,  7.88it/s]  2%|▏         | 217/10000 [00:26<21:43,  7.50it/s]  2%|▏         | 218/10000 [00:26<21:51,  7.46it/s]  2%|▏         | 219/10000 [00:26<21:56,  7.43it/s]  2%|▏         | 220/10000 [00:26<22:14,  7.33it/s]  2%|▏         | 221/10000 [00:26<22:20,  7.30it/s]  2%|▏         | 222/10000 [00:26<22:13,  7.34it/s]  2%|▏         | 223/10000 [00:26<22:23,  7.28it/s]  2%|▏         | 224/10000 [00:27<21:58,  7.42it/s]  2%|▏         | 225/10000 [00:27<22:52,  7.12it/s]  2%|▏         | 226/10000 [00:27<23:01,  7.08it/s]  2%|▏         | 227/10000 [00:27<22:28,  7.25it/s]  2%|▏         | 228/10000 [00:27<21:54,  7.43it/s]  2%|▏         | 229/10000 [00:27<22:12,  7.33it/s]  2%|▏         | 230/10000 [00:27<22:47,  7.15it/s]  2%|▏         | 231/10000 [00:28<22:45,  7.15it/s]  2%|▏         | 232/10000 [00:28<22:34,  7.21it/s]  2%|▏         | 233/10000 [00:28<22:40,  7.18it/s]  2%|▏         | 234/10000 [00:28<22:01,  7.39it/s]  2%|▏         | 235/10000 [00:28<21:25,  7.60it/s]  2%|▏         | 236/10000 [00:28<21:21,  7.62it/s]  2%|▏         | 237/10000 [00:28<21:02,  7.73it/s]  2%|▏         | 238/10000 [00:28<20:58,  7.75it/s]  2%|▏         | 239/10000 [00:29<21:10,  7.68it/s]  2%|▏         | 240/10000 [00:29<21:18,  7.64it/s]  2%|▏         | 241/10000 [00:29<21:27,  7.58it/s]  2%|▏         | 242/10000 [00:29<20:54,  7.78it/s]  2%|▏         | 243/10000 [00:29<20:53,  7.78it/s]  2%|▏         | 244/10000 [00:29<20:57,  7.76it/s]  2%|▏         | 245/10000 [00:29<21:47,  7.46it/s]  2%|▏         | 246/10000 [00:30<22:20,  7.28it/s]  2%|▏         | 247/10000 [00:30<23:22,  6.96it/s]  2%|▏         | 248/10000 [00:30<23:31,  6.91it/s]  2%|▏         | 249/10000 [00:30<22:27,  7.24it/s]  2%|▎         | 250/10000 [00:31<49:46,  3.26it/s]  3%|▎         | 251/10000 [00:31<40:24,  4.02it/s]  3%|▎         | 252/10000 [00:31<33:52,  4.80it/s]  3%|▎         | 253/10000 [00:31<29:19,  5.54it/s]  3%|▎         | 254/10000 [00:31<26:07,  6.22it/s]  3%|▎         | 255/10000 [00:31<23:52,  6.80it/s]  3%|▎         | 256/10000 [00:31<22:22,  7.26it/s]  3%|▎         | 257/10000 [00:32<21:13,  7.65it/s]  3%|▎         | 258/10000 [00:32<20:58,  7.74it/s]  3%|▎         | 259/10000 [00:32<20:33,  7.90it/s]  3%|▎         | 260/10000 [00:32<20:31,  7.91it/s]  3%|▎         | 261/10000 [00:32<20:24,  7.95it/s]  3%|▎         | 262/10000 [00:32<20:14,  8.02it/s]  3%|▎         | 263/10000 [00:32<20:08,  8.06it/s]  3%|▎         | 264/10000 [00:32<20:04,  8.08it/s]  3%|▎         | 265/10000 [00:32<20:03,  8.09it/s]  3%|▎         | 266/10000 [00:33<20:07,  8.06it/s]  3%|▎         | 267/10000 [00:33<20:06,  8.07it/s]  3%|▎         | 268/10000 [00:33<19:52,  8.16it/s]  3%|▎         | 269/10000 [00:33<19:42,  8.23it/s]  3%|▎         | 270/10000 [00:33<19:38,  8.26it/s]  3%|▎         | 271/10000 [00:33<20:12,  8.03it/s]  3%|▎         | 272/10000 [00:33<20:06,  8.07it/s]  3%|▎         | 273/10000 [00:33<20:30,  7.90it/s]  3%|▎         | 274/10000 [00:34<21:16,  7.62it/s]  3%|▎         | 275/10000 [00:34<21:28,  7.54it/s]  3%|▎         | 276/10000 [00:34<21:42,  7.47it/s]  3%|▎         | 277/10000 [00:34<21:27,  7.55it/s]  3%|▎         | 278/10000 [00:34<21:41,  7.47it/s]  3%|▎         | 279/10000 [00:34<21:56,  7.39it/s]  3%|▎         | 280/10000 [00:34<21:24,  7.57it/s]  3%|▎         | 281/10000 [00:35<22:03,  7.34it/s]  3%|▎         | 282/10000 [00:35<21:57,  7.38it/s]  3%|▎         | 283/10000 [00:35<21:54,  7.39it/s]  3%|▎         | 284/10000 [00:35<21:45,  7.44it/s]  3%|▎         | 285/10000 [00:35<21:33,  7.51it/s]  3%|▎         | 286/10000 [00:35<21:23,  7.57it/s]  3%|▎         | 287/10000 [00:35<21:07,  7.67it/s]  3%|▎         | 288/10000 [00:35<21:08,  7.66it/s]  3%|▎         | 289/10000 [00:36<20:53,  7.75it/s]  3%|▎         | 290/10000 [00:36<20:47,  7.78it/s]  3%|▎         | 291/10000 [00:36<20:14,  7.99it/s]  3%|▎         | 292/10000 [00:36<19:54,  8.12it/s]  3%|▎         | 293/10000 [00:36<20:00,  8.09it/s]  3%|▎         | 294/10000 [00:36<19:42,  8.21it/s]  3%|▎         | 295/10000 [00:36<19:46,  8.18it/s]  3%|▎         | 296/10000 [00:36<19:53,  8.13it/s]  3%|▎         | 297/10000 [00:37<19:59,  8.09it/s]  3%|▎         | 298/10000 [00:37<20:05,  8.05it/s]  3%|▎         | 299/10000 [00:37<20:05,  8.04it/s]  3%|▎         | 300/10000 [00:38<46:30,  3.48it/s]  3%|▎         | 301/10000 [00:38<39:38,  4.08it/s]  3%|▎         | 302/10000 [00:38<33:50,  4.78it/s]  3%|▎         | 303/10000 [00:38<29:38,  5.45it/s]  3%|▎         | 304/10000 [00:38<26:41,  6.05it/s]  3%|▎         | 305/10000 [00:38<24:42,  6.54it/s]  3%|▎         | 306/10000 [00:38<23:10,  6.97it/s]  3%|▎         | 307/10000 [00:38<22:05,  7.31it/s]  3%|▎         | 308/10000 [00:39<21:19,  7.57it/s]  3%|▎         | 309/10000 [00:39<20:56,  7.72it/s]  3%|▎         | 310/10000 [00:39<20:46,  7.77it/s]  3%|▎         | 311/10000 [00:39<20:55,  7.72it/s]  3%|▎         | 312/10000 [00:39<20:56,  7.71it/s]  3%|▎         | 313/10000 [00:39<20:30,  7.87it/s]  3%|▎         | 314/10000 [00:39<20:42,  7.80it/s]  3%|▎         | 315/10000 [00:39<21:27,  7.52it/s]  3%|▎         | 316/10000 [00:40<21:33,  7.49it/s]  3%|▎         | 317/10000 [00:40<21:16,  7.59it/s]  3%|▎         | 318/10000 [00:40<21:31,  7.49it/s]  3%|▎         | 319/10000 [00:40<21:17,  7.58it/s]  3%|▎         | 320/10000 [00:40<21:38,  7.46it/s]  3%|▎         | 321/10000 [00:40<21:08,  7.63it/s]  3%|▎         | 322/10000 [00:40<21:27,  7.52it/s]  3%|▎         | 323/10000 [00:40<21:46,  7.41it/s]  3%|▎         | 324/10000 [00:41<22:28,  7.17it/s]  3%|▎         | 325/10000 [00:41<22:13,  7.25it/s]  3%|▎         | 326/10000 [00:41<22:03,  7.31it/s]  3%|▎         | 327/10000 [00:41<21:01,  7.67it/s]  3%|▎         | 328/10000 [00:41<20:21,  7.92it/s]  3%|▎         | 329/10000 [00:41<20:44,  7.77it/s]  3%|▎         | 330/10000 [00:41<21:05,  7.64it/s]  3%|▎         | 331/10000 [00:42<21:35,  7.46it/s]  3%|▎         | 332/10000 [00:42<21:46,  7.40it/s]  3%|▎         | 333/10000 [00:42<21:33,  7.47it/s]  3%|▎         | 334/10000 [00:42<21:15,  7.58it/s]  3%|▎         | 335/10000 [00:42<20:46,  7.75it/s]  3%|▎         | 336/10000 [00:42<20:11,  7.98it/s]  3%|▎         | 337/10000 [00:42<20:07,  8.00it/s]  3%|▎         | 338/10000 [00:42<20:18,  7.93it/s]  3%|▎         | 339/10000 [00:43<20:35,  7.82it/s]  3%|▎         | 340/10000 [00:43<20:52,  7.72it/s]  3%|▎         | 341/10000 [00:43<21:02,  7.65it/s]  3%|▎         | 342/10000 [00:43<20:58,  7.68it/s]  3%|▎         | 343/10000 [00:43<20:59,  7.67it/s]  3%|▎         | 344/10000 [00:43<21:14,  7.57it/s]  3%|▎         | 345/10000 [00:43<21:19,  7.55it/s]  3%|▎         | 346/10000 [00:43<20:50,  7.72it/s]  3%|▎         | 347/10000 [00:44<20:54,  7.70it/s]  3%|▎         | 348/10000 [00:44<20:59,  7.66it/s]  3%|▎         | 349/10000 [00:44<21:20,  7.54it/s]  4%|▎         | 350/10000 [00:45<47:43,  3.37it/s]  4%|▎         | 351/10000 [00:45<39:08,  4.11it/s]  4%|▎         | 352/10000 [00:45<32:46,  4.91it/s]  4%|▎         | 353/10000 [00:45<28:16,  5.68it/s]  4%|▎         | 354/10000 [00:45<25:37,  6.27it/s]  4%|▎         | 355/10000 [00:45<23:43,  6.78it/s]  4%|▎         | 356/10000 [00:45<22:48,  7.05it/s]  4%|▎         | 357/10000 [00:45<21:36,  7.44it/s]  4%|▎         | 358/10000 [00:46<20:43,  7.75it/s]  4%|▎         | 359/10000 [00:46<20:51,  7.70it/s]  4%|▎         | 360/10000 [00:46<20:53,  7.69it/s]  4%|▎         | 361/10000 [00:46<21:33,  7.45it/s]  4%|▎         | 362/10000 [00:46<21:23,  7.51it/s]  4%|▎         | 363/10000 [00:46<21:05,  7.62it/s]  4%|▎         | 364/10000 [00:46<21:21,  7.52it/s]  4%|▎         | 365/10000 [00:46<21:39,  7.41it/s]  4%|▎         | 366/10000 [00:47<21:35,  7.44it/s]  4%|▎         | 367/10000 [00:47<21:41,  7.40it/s]  4%|▎         | 368/10000 [00:47<21:30,  7.46it/s]  4%|▎         | 369/10000 [00:47<21:12,  7.57it/s]  4%|▎         | 370/10000 [00:47<21:02,  7.63it/s]  4%|▎         | 371/10000 [00:47<21:02,  7.63it/s]  4%|▎         | 372/10000 [00:47<21:42,  7.39it/s]  4%|▎         | 373/10000 [00:48<21:51,  7.34it/s]  4%|▎         | 374/10000 [00:48<22:01,  7.29it/s]  4%|▍         | 375/10000 [00:48<21:39,  7.41it/s]  4%|▍         | 376/10000 [00:48<21:43,  7.38it/s]  4%|▍         | 377/10000 [00:48<20:45,  7.73it/s]  4%|▍         | 378/10000 [00:48<20:33,  7.80it/s]  4%|▍         | 379/10000 [00:48<20:28,  7.83it/s]  4%|▍         | 380/10000 [00:48<20:03,  8.00it/s]  4%|▍         | 381/10000 [00:49<19:52,  8.07it/s]  4%|▍         | 382/10000 [00:49<19:57,  8.03it/s]  4%|▍         | 383/10000 [00:49<19:59,  8.02it/s]  4%|▍         | 384/10000 [00:49<20:31,  7.81it/s]  4%|▍         | 385/10000 [00:49<20:21,  7.87it/s]  4%|▍         | 386/10000 [00:49<20:15,  7.91it/s]  4%|▍         | 387/10000 [00:49<20:01,  8.00it/s]  4%|▍         | 388/10000 [00:49<20:37,  7.76it/s]  4%|▍         | 389/10000 [00:50<20:41,  7.74it/s]  4%|▍         | 390/10000 [00:50<20:35,  7.78it/s]  4%|▍         | 391/10000 [00:50<20:21,  7.87it/s]  4%|▍         | 392/10000 [00:50<20:27,  7.83it/s]  4%|▍         | 393/10000 [00:50<20:30,  7.81it/s]  4%|▍         | 394/10000 [00:50<19:58,  8.01it/s]  4%|▍         | 395/10000 [00:50<20:29,  7.81it/s]  4%|▍         | 396/10000 [00:50<21:24,  7.48it/s]  4%|▍         | 397/10000 [00:51<21:57,  7.29it/s]  4%|▍         | 398/10000 [00:51<22:04,  7.25it/s]  4%|▍         | 399/10000 [00:51<22:02,  7.26it/s]  4%|▍         | 400/10000 [00:52<46:06,  3.47it/s]  4%|▍         | 401/10000 [00:52<38:41,  4.14it/s]  4%|▍         | 402/10000 [00:52<32:44,  4.89it/s]  4%|▍         | 403/10000 [00:52<28:41,  5.57it/s]  4%|▍         | 404/10000 [00:52<25:49,  6.19it/s]  4%|▍         | 405/10000 [00:52<24:01,  6.65it/s]  4%|▍         | 406/10000 [00:52<23:29,  6.81it/s]  4%|▍         | 407/10000 [00:52<22:25,  7.13it/s]  4%|▍         | 408/10000 [00:53<21:40,  7.38it/s]  4%|▍         | 409/10000 [00:53<21:17,  7.51it/s]  4%|▍         | 410/10000 [00:53<20:35,  7.76it/s]  4%|▍         | 411/10000 [00:53<20:14,  7.90it/s]  4%|▍         | 412/10000 [00:53<20:05,  7.95it/s]  4%|▍         | 413/10000 [00:53<19:42,  8.11it/s]  4%|▍         | 414/10000 [00:53<19:38,  8.13it/s]  4%|▍         | 415/10000 [00:53<19:38,  8.13it/s]  4%|▍         | 416/10000 [00:54<19:46,  8.07it/s]  4%|▍         | 417/10000 [00:54<19:36,  8.15it/s]  4%|▍         | 418/10000 [00:54<19:53,  8.03it/s]  4%|▍         | 419/10000 [00:54<20:40,  7.72it/s]  4%|▍         | 420/10000 [00:54<20:39,  7.73it/s]  4%|▍         | 421/10000 [00:54<20:34,  7.76it/s]  4%|▍         | 422/10000 [00:54<20:37,  7.74it/s]  4%|▍         | 423/10000 [00:54<21:01,  7.59it/s]  4%|▍         | 424/10000 [00:55<20:55,  7.63it/s]  4%|▍         | 425/10000 [00:55<21:25,  7.45it/s]  4%|▍         | 426/10000 [00:55<21:32,  7.41it/s]  4%|▍         | 427/10000 [00:55<21:03,  7.57it/s]  4%|▍         | 428/10000 [00:55<21:50,  7.31it/s]  4%|▍         | 429/10000 [00:55<21:56,  7.27it/s]  4%|▍         | 430/10000 [00:55<21:56,  7.27it/s]  4%|▍         | 431/10000 [00:56<21:34,  7.39it/s]  4%|▍         | 432/10000 [00:56<21:33,  7.40it/s]  4%|▍         | 433/10000 [00:56<21:23,  7.46it/s]  4%|▍         | 434/10000 [00:56<21:35,  7.39it/s]  4%|▍         | 435/10000 [00:56<20:58,  7.60it/s]  4%|▍         | 436/10000 [00:56<20:17,  7.86it/s]  4%|▍         | 437/10000 [00:56<21:15,  7.50it/s]  4%|▍         | 438/10000 [00:56<20:59,  7.59it/s]  4%|▍         | 439/10000 [00:57<21:30,  7.41it/s]  4%|▍         | 440/10000 [00:57<21:20,  7.47it/s]  4%|▍         | 441/10000 [00:57<21:19,  7.47it/s]  4%|▍         | 442/10000 [00:57<21:53,  7.28it/s]  4%|▍         | 443/10000 [00:57<22:10,  7.18it/s]  4%|▍         | 444/10000 [00:57<22:28,  7.09it/s]  4%|▍         | 445/10000 [00:57<22:12,  7.17it/s]  4%|▍         | 446/10000 [00:58<22:14,  7.16it/s]  4%|▍         | 447/10000 [00:58<21:57,  7.25it/s]  4%|▍         | 448/10000 [00:58<21:25,  7.43it/s]  4%|▍         | 449/10000 [00:58<21:03,  7.56it/s]  4%|▍         | 449/10000 [00:59<20:58,  7.59it/s]
-[2024-08-29T09:50:12.825679+0000][1792312][CRITICAL] load failed: module 'synthcity.plugins.generic.plugin_goggle' has no attribute 'plugin'
-[2024-08-29T09:50:12.825767+0000][1792312][CRITICAL] load failed: module 'synthcity.plugins.generic.plugin_goggle' has no attribute 'plugin'
-[2024-08-29T09:50:12.825801+0000][1792312][CRITICAL] module plugin_goggle load failed
-- Measuring preprocessing (synthcity)
-- Measuring machine learning task
-  * knn (synthcity)
-  * lr (synthcity)
-  * nn (synthcity)
-Starting data set: breast
-- Measuring cleaning
-- Measuring synthetic data generation
-  0%|          | 0/10000 [00:00<?, ?it/s]  0%|          | 4/10000 [00:00<04:41, 35.48it/s]  0%|          | 8/10000 [00:00<04:56, 33.68it/s]  0%|          | 12/10000 [00:00<05:01, 33.09it/s]  0%|          | 16/10000 [00:00<04:59, 33.34it/s]  0%|          | 20/10000 [00:00<04:57, 33.57it/s]  0%|          | 24/10000 [00:00<04:56, 33.70it/s]  0%|          | 28/10000 [00:00<04:55, 33.75it/s]  0%|          | 32/10000 [00:00<04:55, 33.78it/s]  0%|          | 36/10000 [00:01<04:55, 33.74it/s]  0%|          | 40/10000 [00:01<04:54, 33.82it/s]  0%|          | 44/10000 [00:01<04:54, 33.79it/s]  0%|          | 48/10000 [00:01<04:54, 33.81it/s]  1%|          | 52/10000 [00:01<04:59, 33.23it/s]  1%|          | 56/10000 [00:01<04:57, 33.43it/s]  1%|          | 60/10000 [00:01<04:56, 33.57it/s]  1%|          | 64/10000 [00:01<04:55, 33.66it/s]  1%|          | 68/10000 [00:02<04:55, 33.66it/s]  1%|          | 72/10000 [00:02<04:54, 33.77it/s]  1%|          | 76/10000 [00:02<04:57, 33.33it/s]  1%|          | 80/10000 [00:02<05:02, 32.82it/s]  1%|          | 84/10000 [00:02<05:06, 32.33it/s]  1%|          | 88/10000 [00:02<05:06, 32.37it/s]  1%|          | 92/10000 [00:02<05:04, 32.55it/s]  1%|          | 96/10000 [00:02<05:02, 32.76it/s]  1%|          | 100/10000 [00:03<05:04, 32.52it/s]  1%|          | 104/10000 [00:03<05:01, 32.80it/s]  1%|          | 108/10000 [00:03<04:58, 33.12it/s]  1%|          | 112/10000 [00:03<04:57, 33.23it/s]  1%|          | 116/10000 [00:03<04:55, 33.50it/s]  1%|          | 120/10000 [00:03<04:53, 33.69it/s]  1%|          | 124/10000 [00:03<04:53, 33.69it/s]  1%|▏         | 128/10000 [00:03<04:52, 33.70it/s]  1%|▏         | 132/10000 [00:03<04:53, 33.58it/s]  1%|▏         | 136/10000 [00:04<04:55, 33.32it/s]  1%|▏         | 140/10000 [00:04<04:54, 33.45it/s]  1%|▏         | 144/10000 [00:04<04:52, 33.65it/s]  1%|▏         | 148/10000 [00:04<04:52, 33.72it/s]  2%|▏         | 152/10000 [00:04<04:59, 32.86it/s]  2%|▏         | 156/10000 [00:04<04:57, 33.07it/s]  2%|▏         | 160/10000 [00:04<04:56, 33.15it/s]  2%|▏         | 164/10000 [00:04<04:55, 33.34it/s]  2%|▏         | 168/10000 [00:05<04:53, 33.46it/s]  2%|▏         | 172/10000 [00:05<04:57, 33.03it/s]  2%|▏         | 176/10000 [00:05<04:58, 32.86it/s]  2%|▏         | 180/10000 [00:05<04:58, 32.94it/s]  2%|▏         | 184/10000 [00:05<04:55, 33.18it/s]  2%|▏         | 188/10000 [00:05<04:54, 33.34it/s]  2%|▏         | 192/10000 [00:05<04:55, 33.22it/s]  2%|▏         | 196/10000 [00:05<04:55, 33.16it/s]  2%|▏         | 200/10000 [00:06<05:01, 32.46it/s]  2%|▏         | 204/10000 [00:06<05:03, 32.31it/s]  2%|▏         | 208/10000 [00:06<04:58, 32.82it/s]  2%|▏         | 212/10000 [00:06<05:01, 32.41it/s]  2%|▏         | 216/10000 [00:06<05:00, 32.58it/s]  2%|▏         | 220/10000 [00:06<04:59, 32.62it/s]  2%|▏         | 224/10000 [00:06<04:58, 32.73it/s]  2%|▏         | 228/10000 [00:06<04:57, 32.86it/s]  2%|▏         | 232/10000 [00:06<05:00, 32.50it/s]  2%|▏         | 236/10000 [00:07<04:58, 32.70it/s]  2%|▏         | 240/10000 [00:07<05:01, 32.39it/s]  2%|▏         | 244/10000 [00:07<05:07, 31.76it/s]  2%|▏         | 248/10000 [00:07<05:10, 31.45it/s]  3%|▎         | 252/10000 [00:07<05:21, 30.36it/s]  3%|▎         | 256/10000 [00:07<05:22, 30.25it/s]  3%|▎         | 260/10000 [00:07<05:20, 30.38it/s]  3%|▎         | 264/10000 [00:08<05:20, 30.39it/s]  3%|▎         | 268/10000 [00:08<05:16, 30.79it/s]  3%|▎         | 272/10000 [00:08<05:13, 31.02it/s]  3%|▎         | 276/10000 [00:08<05:17, 30.61it/s]  3%|▎         | 280/10000 [00:08<05:19, 30.39it/s]  3%|▎         | 284/10000 [00:08<05:23, 30.05it/s]  3%|▎         | 288/10000 [00:08<05:21, 30.18it/s]  3%|▎         | 292/10000 [00:08<05:19, 30.43it/s]  3%|▎         | 296/10000 [00:09<05:15, 30.77it/s]  3%|▎         | 300/10000 [00:09<05:20, 30.26it/s]  3%|▎         | 304/10000 [00:09<05:19, 30.34it/s]  3%|▎         | 308/10000 [00:09<05:17, 30.51it/s]  3%|▎         | 312/10000 [00:09<05:15, 30.75it/s]  3%|▎         | 316/10000 [00:09<05:11, 31.05it/s]  3%|▎         | 320/10000 [00:09<05:11, 31.08it/s]  3%|▎         | 324/10000 [00:09<05:09, 31.30it/s]  3%|▎         | 328/10000 [00:10<05:09, 31.20it/s]  3%|▎         | 332/10000 [00:10<05:09, 31.26it/s]  3%|▎         | 336/10000 [00:10<05:08, 31.36it/s]  3%|▎         | 340/10000 [00:10<05:08, 31.32it/s]  3%|▎         | 344/10000 [00:10<05:07, 31.37it/s]  3%|▎         | 348/10000 [00:10<05:07, 31.37it/s]  4%|▎         | 352/10000 [00:10<05:12, 30.92it/s]  4%|▎         | 356/10000 [00:11<05:08, 31.21it/s]  4%|▎         | 360/10000 [00:11<05:10, 31.07it/s]  4%|▎         | 364/10000 [00:11<05:14, 30.63it/s]  4%|▎         | 368/10000 [00:11<05:18, 30.26it/s]  4%|▎         | 372/10000 [00:11<05:17, 30.33it/s]  4%|▍         | 376/10000 [00:11<05:16, 30.45it/s]  4%|▍         | 380/10000 [00:11<05:16, 30.43it/s]  4%|▍         | 384/10000 [00:11<05:14, 30.59it/s]  4%|▍         | 388/10000 [00:12<05:14, 30.59it/s]  4%|▍         | 392/10000 [00:12<05:13, 30.67it/s]  4%|▍         | 396/10000 [00:12<05:09, 31.03it/s]  4%|▍         | 400/10000 [00:12<05:15, 30.44it/s]  4%|▍         | 404/10000 [00:12<05:13, 30.65it/s]  4%|▍         | 408/10000 [00:12<05:11, 30.81it/s]  4%|▍         | 412/10000 [00:12<05:10, 30.87it/s]  4%|▍         | 416/10000 [00:12<05:10, 30.85it/s]  4%|▍         | 420/10000 [00:13<05:12, 30.64it/s]  4%|▍         | 424/10000 [00:13<05:12, 30.64it/s]  4%|▍         | 428/10000 [00:13<05:11, 30.73it/s]  4%|▍         | 432/10000 [00:13<05:10, 30.86it/s]  4%|▍         | 436/10000 [00:13<05:08, 31.03it/s]  4%|▍         | 440/10000 [00:13<05:08, 31.02it/s]  4%|▍         | 444/10000 [00:13<05:09, 30.88it/s]  4%|▍         | 448/10000 [00:14<05:12, 30.61it/s]  5%|▍         | 452/10000 [00:14<09:52, 16.11it/s]  5%|▍         | 456/10000 [00:14<08:14, 19.30it/s]  5%|▍         | 460/10000 [00:14<07:07, 22.34it/s]  5%|▍         | 464/10000 [00:14<06:18, 25.16it/s]  5%|▍         | 468/10000 [00:15<05:56, 26.73it/s]  5%|▍         | 472/10000 [00:15<05:43, 27.72it/s]  5%|▍         | 476/10000 [00:15<05:34, 28.44it/s]  5%|▍         | 480/10000 [00:15<05:26, 29.15it/s]  5%|▍         | 484/10000 [00:15<05:16, 30.10it/s]  5%|▍         | 488/10000 [00:15<05:09, 30.76it/s]  5%|▍         | 492/10000 [00:15<05:08, 30.82it/s]  5%|▍         | 496/10000 [00:15<05:11, 30.48it/s]  5%|▌         | 500/10000 [00:16<10:14, 15.46it/s]  5%|▌         | 504/10000 [00:16<08:31, 18.55it/s]  5%|▌         | 508/10000 [00:16<07:26, 21.25it/s]  5%|▌         | 512/10000 [00:16<06:43, 23.54it/s]  5%|▌         | 516/10000 [00:16<06:10, 25.61it/s]  5%|▌         | 520/10000 [00:17<05:47, 27.25it/s]  5%|▌         | 524/10000 [00:17<05:32, 28.53it/s]  5%|▌         | 528/10000 [00:17<05:20, 29.56it/s]  5%|▌         | 532/10000 [00:17<05:13, 30.22it/s]  5%|▌         | 536/10000 [00:17<05:10, 30.47it/s]  5%|▌         | 540/10000 [00:17<05:05, 30.94it/s]  5%|▌         | 544/10000 [00:17<05:06, 30.86it/s]  5%|▌         | 548/10000 [00:17<05:05, 30.91it/s]  5%|▌         | 549/10000 [00:18<05:18, 29.69it/s]
-- Measuring preprocessing (synthcity)
-- Measuring machine learning task
-  * knn (synthcity)
-Traceback (most recent call last):
-  File "/home/jorit/PET-experiments/main.py", line 180, in <module>
-    acc = task_function(f"syn/{label}", synthesizer=f"_{synthesizer}")
-  File "/home/jorit/PET-experiments/Phase4MachineLearning.py", line 27, in knn
-    report = classification_report(val_labels, NeighbourModel.predict(val_data), output_dict=True)
-  File "/home/jorit/.local/lib/python3.10/site-packages/sklearn/neighbors/_classification.py", line 271, in predict
-    neigh_ind = self.kneighbors(X, return_distance=False)
-  File "/home/jorit/.local/lib/python3.10/site-packages/sklearn/neighbors/_base.py", line 826, in kneighbors
-    X = self._validate_data(X, accept_sparse="csr", reset=False, order="C")
-  File "/home/jorit/.local/lib/python3.10/site-packages/sklearn/base.py", line 608, in _validate_data
-    self._check_feature_names(X, reset=reset)
-  File "/home/jorit/.local/lib/python3.10/site-packages/sklearn/base.py", line 535, in _check_feature_names
-    raise ValueError(message)
-ValueError: The feature names should match those that were passed during fit.
-Feature names must be in the same order as they were in fit.
-

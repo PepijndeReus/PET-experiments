@@ -5,3 +5,5 @@ measurements/
 dp_ctgan/__*
 workspace/
 nohup.out
+output.txt
+description_*.json
