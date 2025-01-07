@@ -4,3 +4,4 @@ measurements/
 **/.*
 dp_ctgan/__*
 workspace/
+nohup.out

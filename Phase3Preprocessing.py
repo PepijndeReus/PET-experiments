@@ -165,6 +165,9 @@ def preproc_heart(path="", synthesizer=""):
         continuous = ['age', 'trestbps', 'chol', 'thalach', 'oldpeak']
         data[continuous] = MinMaxScaler().fit_transform(data[continuous])
 
+        # print statement for issue #8:  https://github.com/PepijndeReus/PET-experiments/issues/8
+        # print(data['thal'].unique()) # print unique values in col thal
+
         # use One-hot encoding for categorial features
         categorial = [feat for feat in data.columns.values if feat not in continuous]
         data = pd.get_dummies(data, columns = categorial)
