@@ -4,10 +4,10 @@ import pyRAPL
 import yaml
 import pandas as pd
 
-import Phase1Cleaning
-import Phase2SyntheticDataGeneration
-import Phase3Preprocessing
-import Phase4MachineLearning
+from scripts import Phase1Cleaning
+from scripts import Phase2SyntheticDataGeneration
+from scripts import Phase3Preprocessing
+from scripts import Phase4MachineLearning
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
