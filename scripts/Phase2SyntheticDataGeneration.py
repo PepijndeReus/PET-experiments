@@ -49,7 +49,7 @@ def datasynthesizer(label, dict):
 	data_loc = f'data/{label}_train.csv'
 
 	# settings for DataSynthesizer
-	threshold = 20 # Threshold for categorical
+	threshold = 42 # Threshold for categorical
 	epsilon = 0 # Differential privacy
 	degree_of_bayesian_network = 2 # amount of parent nodes for Bayesian network
 	num_tuples_to_generate = int(len(data))

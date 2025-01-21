@@ -16,9 +16,9 @@ from nbsynthetic.vgan import GAN
 #generate synthetic dataset
 from nbsynthetic.synthetic import synthetic_data
 
-samples= 649 #number of samples we want to generate
+# samples= 649 #number of samples we want to generate
 newdf = synthetic_data(
     GAN, 
     df, 
-    samples = samples
+    samples = len(df.index)
     )

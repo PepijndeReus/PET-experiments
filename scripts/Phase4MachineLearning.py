@@ -5,6 +5,7 @@ This file contains the code that is used in main.py to perform machine learning 
 import pandas as pd
 import numpy as np
 import os
+import tensorflow
 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
@@ -28,18 +29,20 @@ def knn(label, synthesizer=""):
 
 	# make report and add to dataframe
 	report = classification_report(val_labels, NeighbourModel.predict(val_data), output_dict=True)
-	return report['accuracy']
-	name = 'benchmark' if synthesizer=="" else synthesizer.replace('_','')
-	df = pd.DataFrame({'measurement': [name], 'accuracy knn': [report['accuracy']]})
-	df.to_csv(f'measurements/accuracy_{label.split("/")[-1]}.csv',
-				header=not os.path.exists(f'measurements/accuracy_{label.split("/")[-1]}.csv'),
-				index=False, mode='a')
+
+	# name = 'benchmark' if synthesizer=="" else synthesizer.replace('_','')
+	# df = pd.DataFrame({'measurement': [name], 'accuracy knn': [report['accuracy']]})
+	# df.to_csv(f'measurements/accuracy_{label.split("/")[-1]}.csv',
+	# 			header=not os.path.exists(f'measurements/accuracy_{label.split("/")[-1]}.csv'),
+	# 			index=False, mode='a')
 
 	#df = pd.DataFrame([report['accuracy']])
 	#df.columns = ['accuracy knn', 'accuracy lr', 'accuracy nn']
 	#df.to_csv(f'measurements/accuracy_{label.split("/")[-1]}.csv',
 #				header=not os.path.exists(f'measurements/accuracy_{label.split("/")[-1]}.csv'),
 #				index=False, mode='a')
+
+	return report['accuracy']
 
 def lr(label, synthesizer=""):
 	# load data
@@ -57,15 +60,14 @@ def lr(label, synthesizer=""):
 
 	# make report and add to dataframe
 	report = classification_report(val_labels, LogReg.predict(val_data), output_dict=True)
+
+	# name = 'benchmark' if synthesizer=="" else synthesizer.replace('_','')
+	# df = pd.DataFrame({'measurement': [name], 'accuracy lr': [report['accuracy']]})
+	# df.to_csv(f'measurements/accuracy_{label.split("/")[-1]}.csv',
+	# 			header=not os.path.exists(f'measurements/accuracy_{label.split("/")[-1]}.csv'),
+	# 			index=False, mode='a')
+
 	return report['accuracy']
-
-	name = 'benchmark' if synthesizer=="" else synthesizer.replace('_','')
-	df = pd.DataFrame({'measurement': [name], 'accuracy lr': [report['accuracy']]})
-	df.to_csv(f'measurements/accuracy_{label.split("/")[-1]}.csv',
-				header=not os.path.exists(f'measurements/accuracy_{label.split("/")[-1]}.csv'),
-				index=False, mode='a')
-
-
 	#df.columns = ['Accuracy']
 	#df.to_csv(f'measurements/accuracy_{label.replace("/","_")}{synthesizer}_logreg.csv', index=False)
 
@@ -78,26 +80,32 @@ def nn(label, synthesizer=""):
 	# make sure columns are in same order
 	val_data = val_data[train_data.columns]
 
-
+	# Regel hieronder: tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
 	NeuralNet = Sequential()
+	NeuralNet.add(Dense(32, activation = 'relu'))
+	NeuralNet.add(Dense(64, activation = 'relu'))
+	NeuralNet.add(Dense(32, activation = 'relu'))
 	NeuralNet.add(Dense(8, activation = 'relu'))
-	NeuralNet.add(Dense(16, activation = 'relu'))
 	NeuralNet.add(Dense(1, activation = 'sigmoid'))
 	NeuralNet.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
-
-	NeuralNet.fit(train_data, train_labels, batch_size = 150, epochs = 20, verbose=0)
+	
+	NeuralNet.fit(train_data, train_labels, batch_size = 150, epochs = 50, verbose=0)
+	
+	# Failed to convert a NumPy array to a Tensor (Unsupported object type bool).
+	# Fix: convert to Tensor
+	val_data = tensorflow.convert_to_tensor(val_data, dtype=tensorflow.int64) 
+	val_labels = tensorflow.convert_to_tensor(val_labels, dtype=tensorflow.int64) 
 
 	loss, accuracy = NeuralNet.evaluate(val_data, val_labels, verbose=0)
+
+	# name = 'benchmark' if synthesizer=="" else synthesizer.replace('_','')
+	# df = pd.DataFrame({'measurement': [name], 'accuracy nn': accuracy})
+	# df.to_csv(f'measurements/accuracy_{label.split("/")[-1]}.csv',
+	# 			header=not os.path.exists(f'measurements/accuracy_{label.split("/")[-1]}.csv'),
+	# 			index=False, mode='a')x
+
 	return accuracy
-	df = pd.DataFrame([[accuracy]])
 
-	df.columns = ['accuracy knn', 'accuracy lr', 'accuracy nn']
-	df.to_csv(f'measurements/accuracy_{label.split("/")[-1]}.csv',
-				header=not os.path.exists(f'measurements/accuracy_{label.split("/")[-1]}.csv'),
-				index=False, mode='a')
-
-	#df.columns = ['Accuracy']
-	#df.to_csv(f'measurements/accuracy_{label.replace("/","_")}{synthesizer}_nn.csv', index=False)
 
 if __name__ == "__main__":
 	knn('syn/breast', '_synthcity')
