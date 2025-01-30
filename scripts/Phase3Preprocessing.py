@@ -33,9 +33,10 @@ def preproc_breast(path="", synthesizer=""):
         # Apply the mappings to each column in the dataframe
         for column, mapping in mappings.items():
             breast_train[column] = map_values(breast_train, column, mapping)
-    
-    # for col in breast_train:
-        # print(col, breast_train[col].unique())
+
+    # Convert boolean columns to integer
+    binary_columns = breast_train.columns[(breast_train == False).all() | (breast_train == True).all()]
+    breast_train[binary_columns] = breast_train[binary_columns].astype(int)
 
     def preprocess(data):
         # make binary labels for recurrence
@@ -93,6 +94,10 @@ def preproc_census(path="", synthesizer=""):
         # use One-hot encoding for categorial features
         categorial = [feat for feat in data.columns.values if feat not in continuous]
         data = pd.get_dummies(data, columns = categorial)
+
+        # Convert boolean columns to integer
+        binary_columns = data.columns[(data == False).all() | (data == True).all()]
+        data[binary_columns] = data[binary_columns].astype(int)
 
         return data, labels
 

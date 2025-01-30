@@ -172,7 +172,12 @@ def synthcity(label, dict):
 		target_column=dict['target_column'])
 
 	# Initialize and train the synthetic model
-	syn_model = Plugins().get("adsgan")
+	syn_model = Plugins().get("adsgan", n_iter=300)
+
+	# for census, one iteration takes 520 seconds so we limit the iterations.
+	if label == 'census':
+		syn_model = Plugins().get("adsgan", n_iter=3)
+	
 	syn_model.fit(loader)
 
 	# Save data

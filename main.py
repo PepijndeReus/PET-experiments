@@ -20,7 +20,7 @@ if __name__ == "__main__":
         default=['student', 'breast', 'heart', 'census'])
     parser.add_argument('-s', '--generator', nargs="+", dest='generators',
         choices=['benchmark', 'dpctgan', 'ydata', 'ctgan', 'synthcity', 'nbsynthetic', 'datasynthesizer'],
-        default=['dpctgan', 'ydata', 'ctgan', 'synthcity', 'nbsynthetic', 'datasynthesizer'])
+        default=['benchmark', 'dpctgan', 'ydata', 'ctgan', 'synthcity', 'datasynthesizer'])
     parser.add_argument('-p', '--phases', nargs="+", dest='phases', type=int,
         choices=[1,2,3,4],
         default=[1,2,3,4])
@@ -61,7 +61,7 @@ if __name__ == "__main__":
             'target_column': 'class',
             'other_var': 23,
             'batch_size': 10,
-            'epochs': 1,
+            'epochs': 300,
             'learning_rate': 2e-4,
             'beta_1': 0.5,
             'beta_2': 0.9
@@ -75,7 +75,7 @@ if __name__ == "__main__":
             'target_column': 'G3',
             'other_var': 23,
             'batch_size': 10,
-            'epochs': 1,
+            'epochs': 300,
             'learning_rate': 2e-4,
             'beta_1': 0.5,
             'beta_2': 0.9
@@ -87,7 +87,7 @@ if __name__ == "__main__":
             'target_column': 'income',
             'other_var': 23,
             'batch_size': 10,
-            'epochs': 1,
+            'epochs': 300,
             'learning_rate': 2e-4,
             'beta_1': 0.5,
             'beta_2': 0.9
@@ -98,7 +98,7 @@ if __name__ == "__main__":
             'target_column': 'num',
             'other_var': 23,
             'batch_size': 10,
-            'epochs': 1,
+            'epochs': 300,
             'learning_rate': 2e-4,
             'beta_1': 0.5,
             'beta_2': 0.9

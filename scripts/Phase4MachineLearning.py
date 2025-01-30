@@ -88,13 +88,18 @@ def nn(label, synthesizer=""):
 	NeuralNet.add(Dense(8, activation = 'relu'))
 	NeuralNet.add(Dense(1, activation = 'sigmoid'))
 	NeuralNet.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+
+	# Failed to convert a NumPy array to a Tensor (Unsupported object type float).
+	binary_columns = train_data.columns[(train_data == False).all() | (train_data == True).all()]
+	# Convert binary columns to boolean
+	train_data[binary_columns] = train_data[binary_columns].astype(int)
 	
 	NeuralNet.fit(train_data, train_labels, batch_size = 150, epochs = 50, verbose=0)
 	
 	# Failed to convert a NumPy array to a Tensor (Unsupported object type bool).
 	# Fix: convert to Tensor
-	val_data = tensorflow.convert_to_tensor(val_data, dtype=tensorflow.int64) 
-	val_labels = tensorflow.convert_to_tensor(val_labels, dtype=tensorflow.int64) 
+	val_data = tensorflow.convert_to_tensor(val_data, dtype=tensorflow.float32)
+	val_labels = tensorflow.convert_to_tensor(val_labels, dtype=tensorflow.int32) 
 
 	loss, accuracy = NeuralNet.evaluate(val_data, val_labels, verbose=0)
 
