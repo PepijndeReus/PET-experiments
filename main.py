@@ -11,7 +11,6 @@ from scripts import Phase4MachineLearning
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-    #	name		= "name",
         description	= "Measure energy and utility of PETs",
         epilog		= "text ad bottom om help")
 
@@ -20,7 +19,7 @@ if __name__ == "__main__":
         default=['student', 'breast', 'heart', 'census'])
     parser.add_argument('-s', '--generator', nargs="+", dest='generators',
         choices=['benchmark', 'dpctgan', 'ydata', 'ctgan', 'synthcity', 'nbsynthetic', 'datasynthesizer'],
-        default=['benchmark', 'dpctgan', 'ydata', 'ctgan', 'synthcity', 'datasynthesizer'])
+        default=['benchmark', 'dpctgan', 'ctgan', 'synthcity', 'datasynthesizer'])
     parser.add_argument('-p', '--phases', nargs="+", dest='phases', type=int,
         choices=[1,2,3,4],
         default=[1,2,3,4])
@@ -30,7 +29,6 @@ if __name__ == "__main__":
     parser.add_argument('-n', '--amount', type=int, dest='amount', default=1)
     parser.add_argument('--version', action='version', version='%(prog)s 0.1')
     parser.add_argument('-v', '--verbose', action='store_true', default=True)
-    # TODO add custom yaml files
 
     args = parser.parse_args()
 
@@ -199,3 +197,4 @@ if __name__ == "__main__":
 
                 # Save energy measurements
                 csv_output.save()
+    print("End of experiments!")

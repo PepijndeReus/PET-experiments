@@ -13,9 +13,6 @@ def preproc_breast(path="", synthesizer=""):
     breast_train = pd.read_csv(f'data/{path}breast_train{synthesizer}.csv')
     breast_val = pd.read_csv(f'data/breast_val.csv')
 
-    # for col in breast_train:
-        # print(col, breast_train[col].unique())
-
     # see https://github.com/PepijndeReus/PET-experiments/issues/10
     if synthesizer == '_datasynthesizer':
         print("Mapping values from categorical to actual (DataSynthesizer)")
@@ -192,11 +189,4 @@ def preproc_heart(path="", synthesizer=""):
 
 
 if __name__ == "__main__":
-    preproc_breast()
-    preproc_student()
-    preproc_census()
-    preproc_heart()
-    exit()
-    preproc_breastcanc(path="syn/")
-    preproc_student(path="syn/")
-    #preproc_census(path="syn/")
+    pass
