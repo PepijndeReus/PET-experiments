@@ -8,6 +8,7 @@ from scripts import Phase1Cleaning
 from scripts import Phase2SyntheticDataGeneration
 from scripts import Phase3Preprocessing
 from scripts import Phase4MachineLearning
+from scripts import Phase5Anonymeter
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -21,8 +22,8 @@ if __name__ == "__main__":
         choices=['benchmark', 'dpctgan', 'ydata', 'ctgan', 'synthcity', 'nbsynthetic', 'datasynthesizer'],
         default=['benchmark', 'dpctgan', 'ctgan', 'synthcity', 'datasynthesizer'])
     parser.add_argument('-p', '--phases', nargs="+", dest='phases', type=int,
-        choices=[1,2,3,4],
-        default=[1,2,3,4])
+        choices=[1,2,3,4,5],
+        default=[1,2,3,4,5])
     parser.add_argument('-t', '--ml_task', nargs="+", dest='tasks',
         choices=['knn', 'lr', 'nn'],
         default=['knn', 'lr', 'nn'])
@@ -35,7 +36,7 @@ if __name__ == "__main__":
     if not os.path.isdir('raw'):
         print("Data is not present in folder 'raw/'. Downloading the data now!")
         os.system('./download_raw.sh')
-    """if not all([False for val in [1,2,3,4] if val not in args.phases]):
+    """if not all([False for val in [1,2,3,4,5] if val not in args.phases]):
         print("Warning: not executing all phases. Might result in FileNotFoundError.")
         confirmation = input("Do you want to continue? (y/n) ").lower()
         while confirmation not in ("y", "n"):
@@ -206,4 +207,8 @@ if __name__ == "__main__":
 
                 # Save energy measurements
                 csv_output.save()
+
+    if 5 in args.phases:
+        Phase5Anonymeter.measure_anonymity()
+
     print("End of experiments!")
