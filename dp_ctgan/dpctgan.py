@@ -7,6 +7,8 @@ import torch
 from torch import optim
 import matplotlib.pyplot as plt
 import numpy as np
+import pyRAPL
+import os
 
 from ctgan.synthesizers.ctgan import CTGAN, Generator, Discriminator
 from ctgan.data_sampler import DataSampler
@@ -113,112 +115,129 @@ class DPCTGAN(CTGAN):
 
         steps_per_epoch = max(len(train_data) // self._batch_size, 1)
 
+        pyRAPL.setup()
+        file_path = f'./measurements/dpctgan/dp005.csv'
+
+        # Ensure the directory exists
+        directory = os.path.dirname(file_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        # Ensure the file exists
+        if not os.path.exists(file_path):  # Check the file, not the directory
+            open(file_path, 'w').close()
+
+        csv_output = pyRAPL.outputs.CSVOutput(file_path)
+        # print(f"Epsilon: {epsilon}, target epsilon: {self._target_epsilon}.")
         while epsilon < self._target_epsilon:
+            # print("Epsilon less than target.\nStart fitting...")
+            with pyRAPL.Measurement(epoch, output=csv_output):
+                for id_ in range(steps_per_epoch):
+                    ############################
+                    # (1) Update D network
+                    ###########################
+                    for n in range(self._discriminator_steps):
 
-            for id_ in range(steps_per_epoch):
+                        for name, param in discriminator.named_parameters():
+                            if param.grad is not None:
+                                # clip gradient by the threshold C
+                                clipped_gradient = param.grad / max(1, torch.norm(param.grad,
+                                                                                2) / self._clip_coeff)
+                                # generate random noise from a Gaussian distribution
+                                noise = torch.DoubleTensor(param.size()) \
+                                    .normal_(0, (self._sigma * self._clip_coeff) ** 2) \
+                                    .to(self._device)
 
-                ############################
-                # (1) Update D network
-                ###########################
-                for n in range(self._discriminator_steps):
+                                param.grad = (clipped_gradient + noise).float()
+                        steps += 1
 
-                    for name, param in discriminator.named_parameters():
-                        if param.grad is not None:
-                            # clip gradient by the threshold C
-                            clipped_gradient = param.grad / max(1, torch.norm(param.grad,
-                                                                              2) / self._clip_coeff)
-                            # generate random noise from a Gaussian distribution
-                            noise = torch.DoubleTensor(param.size()) \
-                                .normal_(0, (self._sigma * self._clip_coeff) ** 2) \
-                                .to(self._device)
+                        # train with fake
+                        fakez = torch.normal(mean=mean, std=std)
+                        condvec = self._data_sampler.sample_condvec(self._batch_size)
 
-                            param.grad = (clipped_gradient + noise).float()
-                    steps += 1
+                        if condvec is None:
+                            c1, m1, col, opt = None, None, None, None
+                            real = self._data_sampler.sample_data(
+                                data=train_data, n=self._batch_size, col=col, opt=opt)
+                        else:
+                            c1, m1, col, opt = condvec
+                            c1 = torch.from_numpy(c1).to(self._device)
+                            m1 = torch.from_numpy(m1).to(self._device)
+                            fakez = torch.cat([fakez, c1], dim=1)
 
-                    # train with fake
+                            perm = np.arange(self._batch_size)
+                            np.random.shuffle(perm)
+                            real = self._data_sampler.sample_data(
+                                data=train_data, n=self._batch_size, col=col[perm], opt=opt[perm])
+                            c2 = c1[perm]
+
+                        fake = self._generator(fakez)
+                        fakeact = self._apply_activate(fake)
+
+                        real = torch.from_numpy(real.astype('float32')).to(self._device)
+
+                        if c1 is not None:
+                            fake_cat = torch.cat([fakeact, c1], dim=1)
+                            real_cat = torch.cat([real, c2], dim=1)
+                        else:
+                            real_cat = real
+                            fake_cat = fakeact
+
+                        y_fake = discriminator(fake_cat)
+                        y_real = discriminator(real_cat)
+
+                        pen = discriminator.calc_gradient_penalty(
+                            real_cat, fake_cat, self._device, self.pac)
+
+                        loss_d = -(torch.mean(y_real) - torch.mean(y_fake))  # + pen
+
+                        optimizerD.zero_grad()
+                        pen.backward(retain_graph=True)
+                        loss_d.backward()  # Calculate gradients for D in backward pass
+                        optimizerD.step()  # Update D
+
+                    ############################
+                    # (2) Update G network
+                    ###########################
                     fakez = torch.normal(mean=mean, std=std)
                     condvec = self._data_sampler.sample_condvec(self._batch_size)
 
                     if condvec is None:
                         c1, m1, col, opt = None, None, None, None
-                        real = self._data_sampler.sample_data(
-							data=train_data, n=self._batch_size, col=col, opt=opt)
                     else:
                         c1, m1, col, opt = condvec
                         c1 = torch.from_numpy(c1).to(self._device)
                         m1 = torch.from_numpy(m1).to(self._device)
                         fakez = torch.cat([fakez, c1], dim=1)
 
-                        perm = np.arange(self._batch_size)
-                        np.random.shuffle(perm)
-                        real = self._data_sampler.sample_data(
-                            data=train_data, n=self._batch_size, col=col[perm], opt=opt[perm])
-                        c2 = c1[perm]
-
-                    fake = self._generator(fakez)
+                    fake = self._generator(fakez)  # Generate fake data batch with G
                     fakeact = self._apply_activate(fake)
 
-                    real = torch.from_numpy(real.astype('float32')).to(self._device)
-
+                    # Since we just updated D, perform another forward pass
                     if c1 is not None:
-                        fake_cat = torch.cat([fakeact, c1], dim=1)
-                        real_cat = torch.cat([real, c2], dim=1)
+                        y_fake = discriminator(torch.cat([fakeact, c1], dim=1))
                     else:
-                        real_cat = real
-                        fake_cat = fakeact
+                        y_fake = discriminator(fakeact)
 
-                    y_fake = discriminator(fake_cat)
-                    y_real = discriminator(real_cat)
+                    if condvec is None:
+                        cross_entropy = 0
+                    else:
+                        cross_entropy = self._cond_loss(fake, c1, m1)
 
-                    pen = discriminator.calc_gradient_penalty(
-                        real_cat, fake_cat, self._device, self.pac)
+                    # Calculate G's loss based on this output
+                    loss_g = -torch.mean(y_fake) + cross_entropy
 
-                    loss_d = -(torch.mean(y_real) - torch.mean(y_fake))  # + pen
-
-                    optimizerD.zero_grad()
-                    pen.backward(retain_graph=True)
-                    loss_d.backward()  # Calculate gradients for D in backward pass
-                    optimizerD.step()  # Update D
-
-                ############################
-                # (2) Update G network
-                ###########################
-                fakez = torch.normal(mean=mean, std=std)
-                condvec = self._data_sampler.sample_condvec(self._batch_size)
-
-                if condvec is None:
-                    c1, m1, col, opt = None, None, None, None
-                else:
-                    c1, m1, col, opt = condvec
-                    c1 = torch.from_numpy(c1).to(self._device)
-                    m1 = torch.from_numpy(m1).to(self._device)
-                    fakez = torch.cat([fakez, c1], dim=1)
-
-                fake = self._generator(fakez)  # Generate fake data batch with G
-                fakeact = self._apply_activate(fake)
-
-                # Since we just updated D, perform another forward pass
-                if c1 is not None:
-                    y_fake = discriminator(torch.cat([fakeact, c1], dim=1))
-                else:
-                    y_fake = discriminator(fakeact)
-
-                if condvec is None:
-                    cross_entropy = 0
-                else:
-                    cross_entropy = self._cond_loss(fake, c1, m1)
-
-                # Calculate G's loss based on this output
-                loss_g = -torch.mean(y_fake) + cross_entropy
-
-                optimizerG.zero_grad()
-                loss_g.backward()  # Calculate gradients for G
-                optimizerG.step()  # Update G
+                    optimizerG.zero_grad()
+                    loss_g.backward()  # Calculate gradients for G
+                    optimizerG.step()  # Update G
 
             # Save losses for plotting later
             self._G_losses.append(loss_g.item())
             self._D_losses.append(loss_d.item())
             epoch += 1
+
+            # save energy consumption
+            csv_output.save()
 
             # calculate current privacy cost using the accountant
             max_lmbd = 4095
@@ -227,6 +246,7 @@ class DPCTGAN(CTGAN):
                               self._sigma, steps, lmbds)
             epsilon, _, _ = get_privacy_spent(lmbds, rdp, None, self._target_delta)
             self._epsilons.append(epsilon)
+            print("New epsilon: ", epsilon)
 
             # Output training stats
             if self._verbose:

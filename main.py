@@ -26,7 +26,7 @@ if __name__ == "__main__":
     parser.add_argument('-t', '--ml_task', nargs="+", dest='tasks',
         choices=['knn', 'lr', 'nn'],
         default=['knn', 'lr', 'nn'])
-    parser.add_argument('-n', '--amount', type=int, dest='amount', default=1)
+    parser.add_argument('-n', '--amount', type=int, dest='amount', default=5)
     parser.add_argument('--version', action='version', version='%(prog)s 0.1')
     parser.add_argument('-v', '--verbose', action='store_true', default=True)
 
@@ -121,19 +121,28 @@ if __name__ == "__main__":
                     if synthesizer == 'benchmark' or x == 0:
                         vprint("- Measuring cleaning")
                         cleaning_function = getattr(Phase1Cleaning, f"clean_{label}")
-                        with pyRAPL.Measurement('cleaning', output=csv_output):
-                            cleaning_function()
+                        # with pyRAPL.Measurement('cleaning', output=csv_output):
+                        cleaning_function()
 
                 #### Synthetic data generation ####
                 if 2 in args.phases:
+                    print("Now running with epsilon = 0.")
                     if synthesizer != 'benchmark':
                         vprint("- Measuring synthetic data generation")
                         generator_function = getattr(Phase2SyntheticDataGeneration, synthesizer)
-                        with pyRAPL.Measurement(f'syn_{synthesizer}', output=csv_output):
+
+                        if synthesizer == 'ydata' or 'ctgan':
+                            # takes a lot of time, separate measurement included in source code
                             try:
                                 generator_function(label, dict[label])
                             except Exception as e:
                                 print(e)
+                        else:
+                            with pyRAPL.Measurement(f'syn_{synthesizer}', output=csv_output):
+                                try:
+                                    generator_function(label, dict[label])
+                                except Exception as e:
+                                    print(e)
 
 
                 #### Preprocessing ####
@@ -141,11 +150,11 @@ if __name__ == "__main__":
                     preprocessing_function = getattr(Phase3Preprocessing, f"preproc_{label}")
                     if synthesizer == 'benchmark':
                         vprint("- Measuring preprocessing")
-                        with pyRAPL.Measurement('preprocessing', output=csv_output):
-                            try:
-                                preprocessing_function()
-                            except Exception as e:
-                                print(e)
+                        # with pyRAPL.Measurement('preprocessing', output=csv_output):
+                        try:
+                            preprocessing_function()
+                        except Exception as e:
+                            print(e)
 
                         # Check sizes of dataframes
                         data = pd.read_csv(f'data/{label}_val_data.csv', nrows=0)
