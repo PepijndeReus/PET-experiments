@@ -15,12 +15,13 @@ if __name__ == "__main__":
         description	= "Measure energy and utility of PETs",
         epilog		= "text ad bottom om help")
 
+    # note: nbsynthetic is not included by default due to failures. more info in our paper
     parser.add_argument('-d', '--dataset', nargs="+", dest='label',
         choices=['student', 'breast', 'heart', 'census'],
         default=['student', 'breast', 'heart', 'census'])
     parser.add_argument('-s', '--generator', nargs="+", dest='generators',
         choices=['benchmark', 'dpctgan', 'ydata', 'ctgan', 'synthcity', 'nbsynthetic', 'datasynthesizer'],
-        default=['benchmark', 'dpctgan', 'ctgan', 'synthcity', 'datasynthesizer'])
+        default=['benchmark', 'dpctgan', 'ydata','ctgan', 'synthcity', 'datasynthesizer'])
     parser.add_argument('-p', '--phases', nargs="+", dest='phases', type=int,
         choices=[1,2,3,4,5],
         default=[1,2,3,4,5])
@@ -112,7 +113,7 @@ if __name__ == "__main__":
                f"========= RUN {x+1} =========\n",
                "=============================\n\n")
         for synthesizer in args.generators:
-            vprint(f"\n\n=== Measurement for synthetic data generator '{synthesizer}' ===\n\n")
+            vprint(f"\n\n=== Measurement for synthetic data generator '{synthesizer}' (run {x+1})===\n\n")
             for label in args.label:
                 vprint(f"\nStarting data set: {label}")
                 csv_output = pyRAPL.outputs.CSVOutput(f'measurements/energy_{label}.csv')
@@ -127,7 +128,7 @@ if __name__ == "__main__":
 
                 #### Synthetic data generation ####
                 if 2 in args.phases:
-                    print("Now running with epsilon = 0.")
+                    print("Now running with epsilon = 0.1")
                     if synthesizer != 'benchmark':
                         vprint("- Measuring synthetic data generation")
                         generator_function = getattr(Phase2SyntheticDataGeneration, synthesizer)
