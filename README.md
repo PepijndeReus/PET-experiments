@@ -18,5 +18,7 @@ You can pick from the following flags as defined [in main.py](https://github.com
 | `--version`         | Show program version and exit. Currently: `0.1`.                                                                                                                                                                                              |
 #### Logging
 `>`: redirects stdout to the file.
+
 `2>&1`: Redirects stderr (file descriptor 2) to the same place as stdout (file descriptor 1).
+
 `&`: Sends the process to the background (so you can run new commands in the terminal if you wish.)
