@@ -80,7 +80,7 @@ def nn(label, synthesizer=""):
     # Failed to convert a NumPy array to a Tensor (Unsupported object type bool).
     # Fix: convert to Tensor
     val_data = tensorflow.convert_to_tensor(val_data, dtype=tensorflow.float32)
-    val_labels = tensorflow.convert_to_tensor(val_labels, dtype=tensorflow.int32) 
+    val_labels = tensorflow.convert_to_tensor(val_labels, dtype=tensorflow.int32)
 
     loss, accuracy = NeuralNet.evaluate(val_data, val_labels, verbose=0)
 

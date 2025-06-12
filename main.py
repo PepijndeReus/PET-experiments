@@ -3,6 +3,7 @@ import os
 import pyRAPL
 import yaml
 import pandas as pd
+import glob
 
 from scripts import Phase1Cleaning
 from scripts import Phase2SyntheticDataGeneration
@@ -31,6 +32,7 @@ if __name__ == "__main__":
     parser.add_argument('-n', '--amount', type=int, dest='amount', default=5)
     parser.add_argument('--version', action='version', version='%(prog)s 0.1')
     parser.add_argument('-v', '--verbose', action='store_true', default=True)
+    parser.add_argument('-c', '--clear', action='store_true', dest='clear', help='Delete CSV files in measurements folder')
 
     args = parser.parse_args()
 
@@ -104,6 +106,31 @@ if __name__ == "__main__":
             'beta_2': 0.9
         }
     }
+
+    # If argument clear is True, clear measurement CSV files
+    if args.clear:
+        csv_files = glob.glob('measurements/*.csv')
+        for file in csv_files:
+            try:
+                filename = os.path.basename(file)
+
+                # for energy measurements, keep the file but delete all lines after the header
+                if filename.startswith("energy_"):
+                    # Keep only the first line (header)
+                    with open(file, 'r') as f:
+                        header = f.readline()
+                    with open(file, 'w') as f:
+                        f.write(header)
+                    print(f"Cleared data from: {file} (kept header)")
+
+                # for accuracy measurement, delete all files.
+                else:
+                    os.remove(file)
+                    print(f"Deleted: {file}")
+            
+            # error handeling
+            except Exception as e:
+                print(f"Error processing {file}: {e}")
 
 
     print("Given arguments:", args)

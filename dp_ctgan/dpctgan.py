@@ -116,7 +116,7 @@ class DPCTGAN(CTGAN):
         steps_per_epoch = max(len(train_data) // self._batch_size, 1)
 
         pyRAPL.setup()
-        file_path = f'./measurements/dpctgan/dp005.csv'
+        file_path = f'./measurements/dpctgan/dp01.csv'
 
         # Ensure the directory exists
         directory = os.path.dirname(file_path)
