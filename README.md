@@ -1,5 +1,5 @@
 ## Running the experiment
-`nohup python main.py > log_name.log 2>&1 &`
+`nohup python3 main.py > log_name.log 2>&1 &`
 
 ### What does what?
 `nohup`: Runs the command immune to hangups (so it keeps running even if the terminal closes).
