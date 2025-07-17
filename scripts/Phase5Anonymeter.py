@@ -1,6 +1,7 @@
 from anonymeter.evaluators import SinglingOutEvaluator, LinkabilityEvaluator, InferenceEvaluator
 import pandas as pd
 from copy import deepcopy
+import random
 
 synthesizer_names = ["ctgan", "datasynthesizer", "dpctgan", "synthcity", "ydata"]
 
@@ -37,8 +38,6 @@ def measure_anonymity(n_attacks = 1, confidence_level = 0.95, datasets = ["breas
     for synthesizer_name in synthesizer_names:
         for dataset in datasets:
 
-            print(f"DEBUG: ITERATION: {synthesizer_name = }, evaluator = {evaluators[evaluator_class]}, {dataset = }")
-
             original_data = pd.read_csv(f"data/{dataset}_train_data.csv")
             synthetic_data = pd.read_csv(f"data/syn/{dataset}_train_data_{synthesizer_name}.csv")
             control_data = pd.read_csv(f"data/{dataset}_val_data.csv")
@@ -58,6 +57,10 @@ def measure_anonymity(n_attacks = 1, confidence_level = 0.95, datasets = ["breas
                     else:
                         data_df.iloc[:, i] = data_df.iloc[:, i].astype(bool)
 
+            """
+            KNOWLEDGE ATTACKS:
+            """
+
             # Singling Out Evaluator
 
             SO_evaluator = SinglingOutEvaluator(
@@ -74,7 +77,7 @@ def measure_anonymity(n_attacks = 1, confidence_level = 0.95, datasets = ["breas
                                            baseline=False)
             SO_res = SO_evaluator.results(confidence_level=confidence_level)
 
-            results_temp = [synthesizer_name, "Singling Out Evaluator", dataset,
+            results_temp = ["knowledge", synthesizer_name, "Singling Out Evaluator", dataset,
                             SO_res.attack_rate, SO_res.baseline_rate,
                             SO_res.control_rate, SO_risk]
 
@@ -117,7 +120,7 @@ def measure_anonymity(n_attacks = 1, confidence_level = 0.95, datasets = ["breas
                 syn=synthetic_data,
                 aux_cols=aux_cols,
                 n_attacks=n_attacks,
-                n_neighbors=1,
+                n_neighbors=3,
                 control=control_data
             )
 
@@ -127,7 +130,7 @@ def measure_anonymity(n_attacks = 1, confidence_level = 0.95, datasets = ["breas
                                            n_neighbors=None)
             LI_res = LI_evaluator.results(confidence_level=confidence_level)
 
-            results_temp = [synthesizer_name, "Linkability Evaluator", dataset,
+            results_temp = ["knowledge", synthesizer_name, "Linkability Evaluator", dataset,
                             LI_res.attack_rate, LI_res.baseline_rate,
                             LI_res.control_rate, LI_risk]
             measurement_results.append(deepcopy(results_temp))
@@ -153,14 +156,96 @@ def measure_anonymity(n_attacks = 1, confidence_level = 0.95, datasets = ["breas
                                            baseline=False)
             IN_res = IN_evaluator.results(confidence_level=confidence_level)
 
-            results_temp = [synthesizer_name, "Inference Evaluator", dataset,
+            results_temp = ["knowledge", synthesizer_name, "Inference Evaluator", dataset,
                             IN_res.attack_rate, IN_res.baseline_rate,
                             IN_res.control_rate, IN_risk]
             measurement_results.append(deepcopy(results_temp))
 
-    columns = ["Synthesizer", "Evaluator", "Dataset", "Main Attack Rate",
+            """
+            STOCHASTIC ATTACKS:
+            """
+
+            # Singling Out Evaluator
+
+            SO_evaluator = SinglingOutEvaluator(
+                ori=original_data,
+                syn=synthetic_data,
+                n_attacks=n_attacks,
+                n_cols=3,
+                control=control_data,
+                max_attempts=10_000_000
+            )
+
+            SO_evaluator.evaluate(mode="multivariate")
+            SO_risk, _ = SO_evaluator.risk(confidence_level=confidence_level,
+                                           baseline=False)
+            SO_res = SO_evaluator.results(confidence_level=confidence_level)
+
+            results_temp = ["stochastic", synthesizer_name, "Singling Out Evaluator", dataset,
+                            SO_res.attack_rate, SO_res.baseline_rate,
+                            SO_res.control_rate, SO_risk]
+
+            measurement_results.append(deepcopy(results_temp))
+
+            # Linkability Evaluator
+
+            all_cols = list(original_data.columns)
+
+            left = random.sample(all_cols, len(all_cols) // 2)
+            right = [col for col in all_cols if col not in left]
+
+            aux_cols = [left, right]
+
+            LI_evaluator = LinkabilityEvaluator(
+                ori=original_data,
+                syn=synthetic_data,
+                aux_cols=aux_cols,
+                n_attacks=n_attacks,
+                n_neighbors=3,
+                control=control_data
+            )
+
+            LI_evaluator.evaluate()
+            LI_risk, _ = LI_evaluator.risk(confidence_level=confidence_level,
+                                           baseline=False,
+                                           n_neighbors=None)
+            LI_res = LI_evaluator.results(confidence_level=confidence_level)
+
+            results_temp = ["stochastic", synthesizer_name, "Linkability Evaluator", dataset,
+                            LI_res.attack_rate, LI_res.baseline_rate,
+                            LI_res.control_rate, LI_risk]
+            measurement_results.append(deepcopy(results_temp))
+
+            # Inference Evaluator
+
+            all_cols = list(original_data.columns)
+
+            secret = random.choice(all_cols)
+            aux_cols = [col for col in columns if col != secret]
+
+            IN_evaluator = InferenceEvaluator(
+                ori=original_data,
+                syn=synthetic_data,
+                control=control_data,
+                aux_cols=aux_cols,
+                secret=secret,
+                regression=None,
+                n_attacks=n_attacks
+            )
+
+            IN_evaluator.evaluate()
+            IN_risk, _ = IN_evaluator.risk(confidence_level=confidence_level,
+                                           baseline=False)
+            IN_res = IN_evaluator.results(confidence_level=confidence_level)
+
+            results_temp = ["stochastic", synthesizer_name, "Inference Evaluator", dataset,
+                            IN_res.attack_rate, IN_res.baseline_rate,
+                            IN_res.control_rate, IN_risk]
+            measurement_results.append(deepcopy(results_temp))
+
+    columns = ["attack_type", "Synthesizer", "Evaluator", "Dataset", "Main Attack Rate",
                "Baseline Attack Rate", "Control Attack Rate", "Privacy Risk"]
     results_df = pd.DataFrame(measurement_results, columns=columns)
 
-    results_df.to_csv(f"anonymeter_results/results_{datasets[0]}_{n_attacks}.csv", index=False)
+    results_df.to_csv(f"anonymeter_results/results_{n_attacks}.csv", index=False)
 
