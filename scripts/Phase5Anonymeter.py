@@ -31,7 +31,7 @@ logger.addHandler(file_handler)
 logger.setLevel(logging.DEBUG)
 # =============================================================================
 
-def measure_anonymity(n_attacks = 1, confidence_level = 0.95, datasets = ["breast", "census", "heart", "student"]):
+def measure_anonymity(n_attacks = 1000, confidence_level = 0.95, datasets = ["breast", "census", "heart", "student"]):
 
     measurement_results = []
 
