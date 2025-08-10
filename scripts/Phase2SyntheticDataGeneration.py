@@ -50,7 +50,7 @@ def datasynthesizer(label, dict):
 
     # settings for DataSynthesizer
     threshold = 42 # Threshold for categorical
-    epsilon = 0.1 # Differential privacy
+    epsilon = 0.0 # Differential privacy
     degree_of_bayesian_network = 2 # amount of parent nodes for Bayesian network
     num_tuples_to_generate = int(len(data))
 
@@ -90,7 +90,7 @@ def dpctgan(label, dict):
     # Fit model
     dpctgan = DPCTGAN(verbose=True, batch_size=dict['batch_size'], 
                       epochs=dict['epochs'], generator_lr=dict['learning_rate'],
-                      discriminator_lr=dict['learning_rate'], cuda=False, target_epsilon=0.1) #steps, target_epsilon/delta
+                      discriminator_lr=dict['learning_rate'], cuda=False, target_epsilon=0.0) #steps, target_epsilon/delta
     dpctgan.fit(data, discr_cols)
 
     for col in changed_cols:
