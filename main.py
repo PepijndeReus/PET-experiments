@@ -11,6 +11,11 @@ from scripts import Phase3Preprocessing
 from scripts import Phase4MachineLearning
 from scripts import Phase5Anonymeter
 
+# from codecarbon import OfflineEmissionsTracker
+from codecarbon import EmissionsTracker
+
+CODECARBON_OUTPUT = "emissions.csv"
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description	= "Measure energy and utility of PETs",
@@ -49,7 +54,6 @@ if __name__ == "__main__":
 
     vprint = print if args.verbose else lambda *a, **k: None
 
-    pyRAPL.setup()
     os.makedirs('measurements', exist_ok=True)
 
     # TODO yaml configuratie inladen
@@ -143,14 +147,15 @@ if __name__ == "__main__":
             vprint(f"\n\n=== Measurement for synthetic data generator '{synthesizer}' (run {x+1})===\n\n")
             for label in args.label:
                 vprint(f"\nStarting data set: {label}")
-                csv_output = pyRAPL.outputs.CSVOutput(f'measurements/energy_{label}.csv')
+
+                if os.path.exists(CODECARBON_OUTPUT):
+                    os.remove(CODECARBON_OUTPUT)
 
                 #### Cleaning ####
                 if 1 in args.phases:
                     if synthesizer == 'benchmark' or x == 0:
                         vprint("- Measuring cleaning")
                         cleaning_function = getattr(Phase1Cleaning, f"clean_{label}")
-                        # with pyRAPL.Measurement('cleaning', output=csv_output):
                         cleaning_function()
 
                 #### Synthetic data generation ####
@@ -167,7 +172,9 @@ if __name__ == "__main__":
                             except Exception as e:
                                 print(e)
                         else:
-                            with pyRAPL.Measurement(f'syn_{synthesizer}', output=csv_output):
+                            # with pyRAPL.Measurement(f'syn_{synthesizer}', output=csv_output):
+                            # with OfflineEmissionsTracker(country_iso_code="NLD", project_name=f"syn_{synthesizer}") as tracker:
+                            with EmissionsTracker(project_name=f"syn_{synthesizer}") as tracker:
                                 try:
                                     generator_function(label, dict[label])
                                 except Exception as e:
@@ -179,7 +186,6 @@ if __name__ == "__main__":
                     preprocessing_function = getattr(Phase3Preprocessing, f"preproc_{label}")
                     if synthesizer == 'benchmark':
                         vprint("- Measuring preprocessing")
-                        # with pyRAPL.Measurement('preprocessing', output=csv_output):
                         try:
                             preprocessing_function()
                         except Exception as e:
@@ -194,7 +200,9 @@ if __name__ == "__main__":
                         synt.to_csv(f'data/{label}_train_data.csv', index=False)
                     else:
                         vprint(f"- Measuring preprocessing ({synthesizer})")
-                        with pyRAPL.Measurement(f'preprocessing_{synthesizer}', output=csv_output):
+                        # with pyRAPL.Measurement(f'preprocessing_{synthesizer}', output=csv_output):
+                        # with OfflineEmissionsTracker(country_iso_code="NLD", project_name=f"preprocessing_{synthesizer}") as tracker:
+                        with EmissionsTracker(project_name=f"preprocessing_{synthesizer}") as tracker:
                             try:
                                 preprocessing_function(path="syn/", synthesizer=f"_{synthesizer}")
                             except Exception as e:
@@ -219,11 +227,15 @@ if __name__ == "__main__":
 
                             if synthesizer == 'benchmark':
                                 vprint(f"  * {task}")
-                                with pyRAPL.Measurement(f'{task}', output=csv_output):
+                                # with pyRAPL.Measurement(f'{task}', output=csv_output):
+                                # with OfflineEmissionsTracker(country_iso_code="NLD", project_name=f"{task}") as tracker:
+                                with EmissionsTracker(project_name=f"{task}") as tracker:
                                     acc = task_function(label)
                             else:
                                 vprint(f"  * {task} ({synthesizer})")
-                                with pyRAPL.Measurement(f'{task}_{synthesizer}', output=csv_output):
+                                # with pyRAPL.Measurement(f'{task}_{synthesizer}', output=csv_output):
+                                # with OfflineEmissionsTracker(country_iso_code="NLD", project_name=f"{task}_{synthesizer}") as tracker:
+                                with EmissionsTracker(project_name=f"{task}_{synthesizer}") as tracker:
                                     acc = task_function(f"syn/{label}", synthesizer=f"_{synthesizer}")
                             results[task] = acc
                         except Exception as e:
@@ -232,9 +244,6 @@ if __name__ == "__main__":
                     # Save accuracies
                     results.to_csv(f'measurements/accuracy_{label}.csv', mode='a', index=False,
                                     header=not os.path.exists(f'measurements/accuracy_{label}.csv'))
-
-                # Save energy measurements
-                csv_output.save()
 
     if 5 in args.phases:
         Phase5Anonymeter.measure_anonymity()

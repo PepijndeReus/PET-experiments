@@ -11,8 +11,9 @@ import warnings
 
 #ydata
 # Import the necessary modules
-from ydata_synthetic.synthesizers.regular import RegularSynthesizer
-from ydata_synthetic.synthesizers import ModelParameters, TrainParameters
+# from ydata_synthetic.synthesizers.regular import RegularSynthesizer
+from ydata.synthesizers.regular.model import RegularSynthesizer, Metadata
+# from ydata_synthetic.synthesizers import ModelParameters, TrainParameters
 
 # synthcity
 import synthcity.logger as log
@@ -103,26 +104,47 @@ def dpctgan(label, dict):
 
 
 def ydata(label, dict):
-    # Load the data
-    data = pd.read_csv(f'data/{label}_train.csv')
+    # # Load the data
+    # data = pd.read_csv(f'data/{label}_train.csv')
 
-    # Define the training parameters
-    ctgan_args = ModelParameters(batch_size=dict['batch_size'], lr=dict['learning_rate'], betas=(dict['beta_1'], dict['beta_2']))
-    train_args = TrainParameters(epochs=dict['epochs'])
+    # # Define the training parameters
+    # ctgan_args = ModelParameters(batch_size=dict['batch_size'], lr=dict['learning_rate'], betas=(dict['beta_1'], dict['beta_2']))
+    # train_args = TrainParameters(epochs=dict['epochs'])
 
-    # for census, one iteration takes >10 minutes so we limit the epochs to 5.
-    if label == 'census':
-        train_args = TrainParameters(epochs=5)
+    # # for census, one iteration takes >10 minutes so we limit the epochs to 5.
+    # if label == 'census':
+    #     train_args = TrainParameters(epochs=5)
 
-    # Initialize and train the synthesizer
-    synth = RegularSynthesizer(modelname='ctgan', model_parameters=ctgan_args)
-    num_cols = [col for col in data.columns if col not in dict['discr_cols']]
-    synth.fit(data=data, train_arguments=train_args, num_cols=num_cols, cat_cols=dict['discr_cols'])
+    # # Initialize and train the synthesizer
+    # synth = RegularSynthesizer(modelname='ctgan', model_parameters=ctgan_args)
+    # num_cols = [col for col in data.columns if col not in dict['discr_cols']]
+    # synth.fit(data=data, train_arguments=train_args, num_cols=num_cols, cat_cols=dict['discr_cols'])
 
-    # Save data
-    os.makedirs('data/syn', exist_ok=True)
-    synthetic_data = synth.sample(len(data))
-    synthetic_data.to_csv(f'data/syn/{label}_train_ydata.csv', index=False)
+    # # Save data
+    # os.makedirs('data/syn', exist_ok=True)
+    # synthetic_data = synth.sample(len(data))
+    # synthetic_data.to_csv(f'data/syn/{label}_train_ydata.csv', index=False)
+
+    # 1. Load your raw data
+    df = pd.read_csv(f"data/{label}_train.csv")
+    
+    # 2. Build metadata (auto-detects numeric vs categorical, etc.)
+    meta = Metadata(df)
+    
+    # 3. Instantiate and train the synthesizer (uses default CTGAN-style model)
+    synth = RegularSynthesizer()
+    
+    #    If you ever want to exclude certain columns from synthesis (e.g. your discr_cols),
+    #    you could do:
+    #    synth.fit(df, metadata=meta, exclude_cols=params.get("discr_cols"))
+    synth.fit(df, metadata=meta)
+    
+    # 4. Sample the same number of rows as the original
+    os.makedirs("data/syn", exist_ok=True)
+    synthetic = synth.sample(n_samples=len(df))
+    
+    # 5. Persist to CSV
+    synthetic.to_csv(f"data/syn/{label}_train_ydata.csv", index=False)
 
 
 def synthcity(label, dict):
